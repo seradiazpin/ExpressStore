@@ -5,8 +5,12 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 
+
+// Importar conneccion a base de datos
 var db = require('./database/connection');
 
+
+// Agregamos nuestros puntos de conexion
 var index = require('./routes/index');
 var products = require('./routes/products');
 
