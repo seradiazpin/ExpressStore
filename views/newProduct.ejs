@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <% include ./partials/head %>
+</head>
+
+<body>
+
+    <% include ./partials/header %>
+
+<form class="form-group" method="post" action="new">
+    <p>
+        <label>Name:</label>
+        <input  type="text" name="name">
+    </p>
+    <p>
+        <label>Price:</label>
+        <input type="number" name="price">
+    </p>
+    <p>
+        <label>Description:</label>
+        <input type="text" name="description">
+    </p>
+    <p>
+        <label>Calification:</label>
+        <input type="number" name="calification">
+    </p>
+    <p>
+        <input type="submit">
+    </p>
+</form>
+
+    <% include ./partials/footer %>
+</body>
+
+</html>
