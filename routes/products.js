@@ -28,7 +28,6 @@ router.get('/', function(req, res, next) {
         if (err) throw err;
         res.send(users);
     });
-
 });
 
 /* GET users listing. */
