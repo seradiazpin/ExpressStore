@@ -13,6 +13,7 @@ var db = require('./database/connection');
 // Agregamos nuestros puntos de conexion
 var index = require('./routes/index');
 var products = require('./routes/products');
+var stairs = require('./routes/stairs');
 
 var app = express();
 
@@ -38,6 +39,7 @@ db.once('open', function() {
 
 app.use('/', index);
 app.use('/products', products);
+app.use('/stairs', stairs);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

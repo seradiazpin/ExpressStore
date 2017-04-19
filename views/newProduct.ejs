@@ -11,27 +11,20 @@
     <div class="container-fluid">
         <div class="row" style="padding-top: 150px">
         </div>
-        <form class="form-group" method="post" action="new">
-            <p>
-                <label c>Name:</label>
-                <input  class="form-control" type="text" name="name">
-            </p>
-            <p>
-                <label>Price:</label>
-                <input class="form-control" type="number" name="price">
-            </p>
-            <p>
-                <label>Description:</label>
-                <input class="form-control" type="text" name="description">
-            </p>
-            <p>
-                <label>Calification:</label>
-                <input class="form-control" type="number" name="calification">
-            </p>
-            <p>
-                <input class="form-control btn btn-success" type="submit">
-            </p>
-        </form>
+        <div id="fullscreen_bg" class="fullscreen_bg"/>
+
+        <div class="container">
+
+            <form class="form-signin">
+                <h1 class="form-signin-heading text-muted">Sign In</h1>
+                <input type="text" class="form-control" placeholder="Email address" required="" autofocus="">
+                <input type="password" class="form-control" placeholder="Password" required="">
+                <button class="btn btn-lg btn-primary btn-block" type="submit">
+                    Sign In
+                </button>
+            </form>
+
+        </div>
     </div>
     <% include ./partials/footer %>
 </body>
