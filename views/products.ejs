@@ -6,7 +6,54 @@
 
 <body>
 
-<% include ./partials/header %>
+<nav class="navbar navbar-default navbar-fixed-top navbar-inverse" style="background-color: black">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="#">You Shop Name</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav">
+                <li class="active"><a href="#">Escaleras<span class="sr-only">(current)</span></a></li>
+                <li><a href="#">Maquinaria</a></li>
+                <li><a href="#">Cajas</a></li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"> <span class="glyphicon glyphicon-shopping-cart"></span> 7 - Items<span class="caret"></span></a>
+                    <ul class="dropdown-menu dropdown-cart" role="menu">
+                        <% products.forEach(function(product) { %>
+                            <li>
+                            <span class="item">
+                    <span class="item-left">
+                        <img src="http://lorempixel.com/50/50/" alt="" />
+                        <span class="item-info">
+                            <span>Item name</span>
+                            <span>23$</span>
+                        </span>
+                    </span>
+                    <span class="item-right">
+                        <button class="btn btn-xs btn-danger pull-right">x</button>
+                    </span>
+                </span>
+                        </li>
+                        <% }); %>
+                        <li class="divider"></li>
+                        <li><a class="text-center" href="/products/car">Ver carro</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </div><!-- /.navbar-collapse -->
+    </div><!-- /.container-fluid -->
+</nav>
 
 
 <div class=" container-fluid">
@@ -68,23 +115,23 @@
     <br>
     <!-- Productos -->
     <div class="row">
-    <% products.forEach(function(product) { %>
-<div class="col-sm-3  col-md-4 col-lg-4">
-<div class="thumbnail">
-<img src="http://placehold.it/320x150" alt="">
-<div class="caption">
-<h4 class="pull-right">$<%= product.price %></h4>
-<h4><a href="#"><%= product.name%></a>
-</h4>
-<p><%= product.description%></p>
-</div>
-<div class="ratings">
-<p class="pull-right">18 reviews</p>
-<p><%= product.calification%></p>
-</div>
-</div>
-</div>
-<% }); %>
+        <% products.forEach(function(product) { %>
+        <div class="col-sm-3  col-md-4 col-lg-4">
+            <div class="thumbnail">
+                <img src="http://placehold.it/320x150" alt="">
+                <div class="caption">
+                    <h4 class="pull-right">$<%= product.price %></h4>
+                    <h4><a href="#"><%= product.name%></a>
+                    </h4>
+                    <p><%= product.description%></p>
+                </div>
+                <div class="ratings">
+                    <p class="pull-right">18 reviews</p>
+                    <p><%= product.calification%></p>
+                </div>
+            </div>
+        </div>
+        <% }); %>
     </div>
 </div>
 
