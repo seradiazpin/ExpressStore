@@ -11,6 +11,25 @@ var Quotation = require('../database/schemas/quotation');
 
 var car = new Quotation();
 
+/* Crear un producto y agregarlo a la base de datos*/
+var createProduct = function (request, response) {
+    var data = request.body|| {};
+    var aplanadora = new Product(data);
+    console.log(aplanadora);
+    //Ejecutar el metodo CASE para agrefar Product al nombre del producto
+    aplanadora.case(function(err, name) {
+        if (err) throw err;
+        console.log('product name :'+ name);
+    });
+    // Guardar en la base de datos
+    aplanadora.save(function(err) {
+        if (err) throw err;
+        console.log('Product saved successfully!');
+    });
+    response.redirect('/products/all');
+};
+
+
 /* TODO Funcion para agregar al carro */
 var addToCar = function (request, response) {
     var data = request.body|| {};
@@ -63,22 +82,5 @@ router.get('/newForm', function(req, res, next) {
 /* POST Para gueardar los productos en la base de datos*/
 router.post('/new',jsonParser,createProduct);
 
-/* Crear un producto y agregarlo a la base de datos*/
-var createProduct = function (request, response) {
-    var data = request.body|| {};
-    var aplanadora = new Product(data);
-    console.log(aplanadora);
-    //Ejecutar el metodo CASE para agrefar Product al nombre del producto
-    aplanadora.case(function(err, name) {
-        if (err) throw err;
-        console.log('product name :'+ name);
-    });
-    // Guardar en la base de datos
-    aplanadora.save(function(err) {
-        if (err) throw err;
-        console.log('Product saved successfully!');
-    });
-    response.redirect('/products/all');
-};
 
 module.exports = router;

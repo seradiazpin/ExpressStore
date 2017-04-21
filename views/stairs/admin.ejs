@@ -7,8 +7,10 @@
 <body>
 
 <% include ../partials/header %>
+
+
 <!-- Admin view-->
-<div class="row" style="padding-top: 150px">
+<div class="row" style="padding-top: 100px"></div>
 <div class="container-fluid">
 
     <div class="row">
@@ -24,6 +26,7 @@
     </ul>
 
     <div class="tab-content">
+
         <div id="menu1"class="tab-pane fade in active">
             <h3>Escaleras</h3>
             <form class="form-group" method="post" action="/stairs/new-stair">
@@ -36,18 +39,22 @@
                     <th>Altura</th>
                     <th>Ancho</th>
                     <th>Largo</th>
+                    <th>Editar</th>
+                    <th>Eliminar</th>
                 </tr>
                 </thead>
 
                 <tbody>
                 <% stairs.forEach(function(stair) { %>
                 <tr>
-                    <td><%= stair.form %></td>
-                    <td><%= stair.accessDir %></td>
-                    <td><%= stair.exitDir %></td>
-                    <td><%= stair.height %></td>
-                    <td><%= stair.width %></td>
-                    <td><%= stair.len %></td>
+                        <td><%= stair.form %></td>
+                        <td><%= stair.accessDir %></td>
+                        <td><%= stair.exitDir %></td>
+                        <td><%= stair.height %></td>
+                        <td><%= stair.width %></td>
+                        <td><%= stair.len %></td>
+                        <td><a  class="btn btn-info" href="/stairs/edit-stair/<%= stair.id%>">Editar</a></td>
+                        <td><a class="btn btn-danger" href="/stairs/delete/<%= stair.id%>">Borrar</a></td>
                 </tr>
                 <% }); %>
                 <tr>
@@ -62,7 +69,7 @@
                 </tr>
                 </tbody>
             </table>
-            <input class="form-control btn btn-success" type="submit">
+            <input class="form-control btn btn-success" type="submit" value="Crear">
             </form>
         </div>
         <div id="menu2" class="tab-pane fade">
@@ -141,7 +148,7 @@
 
 
 </div>
-</div>
+
 <!-- end Admin view-->
 <% include ../partials/footer %>
 
