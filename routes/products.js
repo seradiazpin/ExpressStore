@@ -1,16 +1,17 @@
+/* Librerias de express */
 var express = require('express');
 var router = express.Router();
 var bodyParser = require("body-parser");
 var jsonParser = bodyParser.json();
 
 
-
+/* Importar esquemas de la base de datos*/
 var Product = require('../database/schemas/product');
 var Quotation = require('../database/schemas/quotation');
 
 var car = new Quotation();
 
-/*Querrys and functions*/
+/* TODO Funcion para agregar al carro */
 var addToCar = function (request, response) {
     var data = request.body|| {};
     //Stairs
@@ -20,6 +21,7 @@ var addToCar = function (request, response) {
 
 };
 
+/* TODO Funcion para guardar cotizacion en la base de datos*/
 var sendQuotation = function (request, response) {
     car.save(function (err) {
         if (err) throw err;
@@ -28,23 +30,9 @@ var sendQuotation = function (request, response) {
     response.redirect('/products/all');
 };
 
-// Create a new product
-var createProduct = function (request, response) {
-    var data = request.body|| {};
-    var aplanadora = new Product(data);
-    console.log(aplanadora);
-    aplanadora.case(function(err, name) {
-        if (err) throw err;
-        console.log('product name :'+ name);
-    });
-    aplanadora.save(function(err) {
-        if (err) throw err;
-        console.log('Product saved successfully!');
-    });
-    response.redirect('/products/all');
-};
 
-/* GET products listing. */
+
+/* GET Obtener todos los productos */
 router.get('/', function(req, res, next) {
     Product.find({}, function(err, users) {
         if (err) throw err;
@@ -52,13 +40,13 @@ router.get('/', function(req, res, next) {
     });
 });
 
-/* GET shoping car. */
+/* TODO GET Obtener carro de compras*/
 router.get('/car', function(req, res, next) {
     res.render('quotation/status', { shoppingCar:car });
 });
 
 
-/* GET users listing. */
+/* GET Obtener todos los productos*/
 router.get('/all', function(req, res, next) {
     var products = [];
     Product.find({}, function(err, pro) {
@@ -67,11 +55,30 @@ router.get('/all', function(req, res, next) {
     });
 });
 
-/* GET users listing. */
+/* GET Formulario para crear un nuevo producto*/
 router.get('/newForm', function(req, res, next) {
     res.render('newProduct', { data: {} });
 });
 
+/* POST Para gueardar los productos en la base de datos*/
 router.post('/new',jsonParser,createProduct);
+
+/* Crear un producto y agregarlo a la base de datos*/
+var createProduct = function (request, response) {
+    var data = request.body|| {};
+    var aplanadora = new Product(data);
+    console.log(aplanadora);
+    //Ejecutar el metodo CASE para agrefar Product al nombre del producto
+    aplanadora.case(function(err, name) {
+        if (err) throw err;
+        console.log('product name :'+ name);
+    });
+    // Guardar en la base de datos
+    aplanadora.save(function(err) {
+        if (err) throw err;
+        console.log('Product saved successfully!');
+    });
+    response.redirect('/products/all');
+};
 
 module.exports = router;
