@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <% include ../partials/head %>
+</head>
+
+<body>
+
+<% include ../partials/header %>
+
+
+<!-- Page Content -->
+<div class="container">
+
+    <!-- Jumbotron Header -->
+    <header class="jumbotron hero-spacer" style="background-image: url('/img/portfolio/stairs/l-stair.jpg');">
+        <h1 style="color: white">Escaleras</h1>
+    </header>
+    <h1>Descripcion del producto</h1>
+    <p>Escaleras interiores y exteriores a pedido, en acero inoxidable o madera.</p>
+    <p>El usuario solo debe elegir el tipo de escalera que desea, proporcionar la altura que desea cubrir y el área que dispone para su construcción. Dependiendo de la disponibilidad de materiales y personal, será informado en cuanto tiempo iniciará la instalación y cuanto tardará.</p>
+
+
+    <a href="#" class="btn btn-primary">Cotizar ahora!</a>
+
+
+    <hr>
+
+    <!-- Title -->
+    <div class="row">
+        <div class="col-lg-12">
+            <h3>Catalogo</h3>
+        </div>
+    </div>
+    <!-- /.row -->
+
+    <!-- Page Features -->
+    <div class="row">
+        <% stairs.forEach(function(product) { %>
+        <div class="col-sm-3  col-md-4 col-lg-4">
+            <div class="thumbnail">
+                <img src="http://placehold.it/320x150" alt="">
+                <div class="caption">
+                    <h4><a href="#">Escalera en forma de <%= product.form %></a>
+                    </h4>
+                    <h5>Altura:</h5><p><%= product.height%></p>
+                    <h5>Ancho:</h5><p><%= product.width%></p>
+                    <h5>Largo:</h5><p><%= product.len%></p>
+                    <h5>Entrada:</h5><p><%= product.accessDir%></p>
+                    <h5>Salida:</h5><p><%= product.exitDir%></p>
+                </div>
+            </div>
+        </div>
+        <% }); %>
+    </div>
+    <!-- /.row -->
+
+    <hr>
+
+    <!-- Footer -->
+    <footer>
+        <div class="row">
+            <div class="col-lg-12">
+                <p>Copyright &copy; Your Website 2014</p>
+            </div>
+        </div>
+    </footer>
+
+</div>
+<% include ../partials/footer %>
+</body>
+
+</html>
+

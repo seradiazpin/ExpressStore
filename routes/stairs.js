@@ -65,6 +65,13 @@ var updateStair = function (request, response) {
     });
 };
 
+router.get('/',function (request, response) {
+    Stair.find({}, function(err, sta) {
+        if (err) throw err;
+        response.render('stairs/index', {stairs:sta});
+    });
+});
+
 /* Borrar y edutar escalera*/
 router.get('/delete/:stairId',deleteStair);
 router.get('/edit-stair/:stairId',function (request, response) {

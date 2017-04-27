@@ -59,6 +59,13 @@ router.get('/', function(req, res, next) {
     });
 });
 
+router.get('/old', function(req, res, next) {
+    Product.find({}, function(err, pro) {
+        if (err) throw err;
+        res.render('oldTest', { products:pro });
+    });
+});
+
 /* TODO GET Obtener carro de compras*/
 router.get('/car', function(req, res, next) {
     res.render('quotation/status', { shoppingCar:car });
