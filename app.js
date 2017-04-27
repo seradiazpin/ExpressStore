@@ -14,6 +14,7 @@ var db = require('./database/connection');
 var index = require('./routes/index');
 var products = require('./routes/products');
 var stairs = require('./routes/stairs');
+var appData = require('./routes/data');
 
 var app = express();
 
@@ -40,6 +41,7 @@ db.once('open', function() {
 app.use('/', index);
 app.use('/products', products);
 app.use('/stairs', stairs);
+app.use('/data', appData);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

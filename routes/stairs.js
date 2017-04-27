@@ -73,6 +73,12 @@ router.get('/edit-stair/:stairId',function (request, response) {
     });
 });
 
+router.get('/edit-stair2/:stairId',function (request, response) {
+    Stair.findById(request.params.stairId, function (err, sta) {
+        response.send(sta);
+    });
+});
+
 /* POST Ruta para guardar elementos en la base de datos*/
 router.post('/new-stair',jsonParser,createStair);
 router.post('/update-stair/:stairId',jsonParser,updateStair);

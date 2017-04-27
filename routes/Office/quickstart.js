@@ -1,5 +1,7 @@
 /**
  * Created by sergiodiazpinilla on 25/04/17.
+ *
+ *
  */
 
 
@@ -16,15 +18,15 @@ var filePath = path.join(__dirname, 'client_secret.json');
 var SCOPES = ['https://www.googleapis.com/auth/drive','https://mail.google.com/','https://www.googleapis.com/auth/drive',
     'https://www.googleapis.com/auth/script.external_request',
     'https://www.googleapis.com/auth/script.scriptapp',
-        'https://www.googleapis.com/auth/script.send_mail',
-            'https://www.googleapis.com/auth/spreadsheets',
-               ' https://www.googleapis.com/auth/userinfo.email'];
+    'https://www.googleapis.com/auth/script.send_mail',
+    'https://www.googleapis.com/auth/spreadsheets',
+    ' https://www.googleapis.com/auth/userinfo.email'];
 
 var TOKEN_DIR = (process.env.HOME || process.env.HOMEPATH ||
     process.env.USERPROFILE) + '/.credentials/';
 var TOKEN_PATH = TOKEN_DIR + 'script-nodejs-quickstart.json';
 
-// Load client secrets from a local file.
+/* Load client secrets from a local file.
 fs.readFile(filePath, function processClientSecrets(err, content) {
     if (err) {
         console.log('Error loading client secret file: ' + err);
@@ -35,7 +37,7 @@ fs.readFile(filePath, function processClientSecrets(err, content) {
     console.log(JSON.parse(content));
     authorize(JSON.parse(content), callAppsScript);
 });
-
+*/
 /**
  * Create an OAuth2 client with the given credentials, and then execute the
  * given callback function.
