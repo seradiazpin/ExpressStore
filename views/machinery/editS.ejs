@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <% include ../partials/head %>
+</head>
+
+<body>
+
+<% include ../partials/header %>
+
+
+<!-- Admin view-->
+<div class="row" style="padding-top: 150px"></div>
+<div class="container-fluid">
+
+    <div class="row">
+        <h1>Proyecto Escaleras</h1>
+    </div>
+    <form class="form-group" method="post" action="/stairs/update-stair/<%= stair.id %>">
+        <div class="row">
+            <div class="col-lg-2">
+                <label>Forma</label>
+                <input name="form" class="form-control" type="text" required value="<%= stair.form%>">
+            </div>
+            <div class="col-lg-2">
+                <label>Direccion Entrada</label>
+                <input name="accessDir" class="form-control" type="text" required value="<%= stair.accessDir %>">
+            </div>
+            <div class="col-lg-2">
+                <label>Direccion Salida</label>
+                <input name="exitDir" class="form-control" type="text" required value="<%= stair.exitDir %>">
+            </div>
+            <div class="col-lg-2">
+                <label>Alto</label>
+                <input name="height" class="form-control" type="number" step="0.01" required value="<%= stair.height %>">
+            </div>
+            <div class="col-lg-2">
+                <label>Ancho</label>
+                <input name="width" class="form-control" type="number" step="0.01"required value="<%= stair.width %>">
+            </div>
+            <div class="col-lg-2">
+                <label>Largo</label>
+                <input name="len" class="form-control" type="number" step="0.01" required value="<%= stair.len %>">
+            </div>
+        </div>
+
+        <br>
+        <div class="row">
+            <div class="col-lg-4"></div>
+            <div class="col-lg-4">
+                <input class="form-control btn btn-success" type="submit" value="Actualizar">
+            </div>
+            <div class="col-lg-4"></div>
+        </div>
+    </form>
+
+</div>
+
+<!-- end Admin view-->
+<% include ../partials/footer %>
+
+</body>
+
+</html>

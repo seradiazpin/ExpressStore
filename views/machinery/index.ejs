@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <% include ../partials/head %>
+</head>
+
+<body>
+
+<% include ../partials/header %>
+
+
+<!-- Page Content -->
+<div class="container">
+
+    <!-- Jumbotron Header -->
+    <header class="jumbotron hero-spacer" style="background-image: url('/img/portfolio/machinery/aplanadora.jpg');">
+        <h1 style="color: white">Maquinaria Pesada</h1>
+    </header>
+    <h1>Descripcion del producto</h1>
+    <p>Maquinaria pesada a la medida de sus necesidades.</p>
+    <p>El usuario podra seleccionar la maquinaria que desea cotizar, recibira el precio medio y el tiempo necesario para la entrega de la misma.</p>
+
+    <a href="#" class="btn btn-primary">Cotizar ahora!</a>
+
+    <hr>
+
+    <!-- Title -->
+    <div class="row">
+        <div class="col-lg-12">
+            <h3>Catalogo</h3>
+        </div>
+    </div>
+    <!-- /.row -->
+
+    <!-- Page Features -->
+    <div class="row">
+        <% machines.forEach(function(product) { %>
+        <div class="col-sm-3  col-md-4 col-lg-4">
+            <div class="thumbnail">
+                <img src="http://placehold.it/320x150" alt="">
+                <div class="caption">
+                    <h4><a href="#">Maquinaria de tipo <%= product.type %></a>
+                    </h4>
+                    <h5>Peso:</h5><p><%= product.weigth%></p>
+                    <h5>Alto:</h5><p><%= product.heigth%></p>
+                    <h5>ancho:</h5><p><%= product.width%></p>
+                    <h5>Poder (HP):</h5><p><%= product.hp%></p>
+                </div>
+            </div>
+        </div>
+        <% }); %>
+    </div>
+    <!-- /.row -->
+
+    <hr>
+
+    <!-- Footer -->
+    <footer>
+        <div class="row">
+            <div class="col-lg-12">
+                <p>Copyright &copy; Your Website 2014</p>
+            </div>
+        </div>
+    </footer>
+
+</div>
+<% include ../partials/footer %>
+</body>
+
+</html>
+

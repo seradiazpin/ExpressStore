@@ -22,6 +22,26 @@ var createStair = function (request, response) {
     });
     response.redirect('/stairs/admin');
 };
+var createStairUSER = function (request, response) {
+    var data = request.body|| {};
+    var stair = new Stair(data);
+    stair.save(function(err) {
+        if (err) throw err;
+        console.log('Stair saved successfully!');
+    });
+    response.redirect('/stairs');
+};
+
+var createStair = function (request, response) {
+    var data = request.body|| {};
+    var stair = new Stair(data);
+    stair.save(function(err) {
+        if (err) throw err;
+        console.log('Stair saved successfully!');
+    });
+    response.redirect('/stairs/admin');
+};
+
 
 /* Metodo para crear y guardar un material*/
 var createMaterial = function (request, response) {
@@ -109,4 +129,8 @@ router.get('/admin', function(req, res, next) {
 
 });
 
+
+router.get('/form', function(req, res, next) {
+    res.render('stairs/form');
+});
 module.exports = router;

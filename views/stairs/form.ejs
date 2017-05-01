@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <% include ../partials/head %>
+    <style>
+        div{position:absolute;}
+        img{position:absolute;}
+        p{position:absolute;}
+        #borde{padding: 3px 10px;border: #71A141 7px solid; border-radius: 20px;}
+    </style>
+</head>
+
+<body>
+
+<% include ../partials/header %>
+
+<div style="position:absolute;width:100%;height:8%;background-color: black"></div>
+<img src="img/consulta3.jpg" style="top:8%;width:100%;height:22%">
+<div style="position: absolute;width:100%;height:22%;top:8%;background-color:#282626;opacity:0.7"></div>
+<div style="width:60%;height:4%;top:14%;left:20%;background-color:white;border: 3.5px solid #222222"></div>
+<div style="width:8.5%;height:9%;top:11%;left:16%;background-color:#222222;border-radius: 50%;padding-top: 6%;"></div>
+<div style="width:8.5%;height:9%;top:11%;left:76%;background-color:#222222;border-radius: 50%;padding-top: 6%;"></div>
+<img src="img/1_active.png" style="width:7.2%;height:9%;top:12.8%;left:16.7%;">
+<img src="img/2.png" style="width:7.2%;height:9%;top:12.8%;left:76.7%;">
+<div id="borde" style="width:100%;height:70%;top:30%;"></div>
+<div style="width:90%;height:60%;top:35%;left:5%;">
+    <form action="/" method="post">
+        <div style="width:100%" class="form-group">
+            <label for="material">Material:</label>
+            <select name="material" style="width:100%">
+                <option value="1">Madera</option>
+                <option value="2">Metal</option>
+                <option value="3">Recina</option>
+            </select>
+        </div>
+        <div style="top:18%;width:100%" class="form-group">
+            <label for="numeroEscalones">Numero De Escalones:</label>
+            <input type="text" name="numeroEscalones" placeholder="N°Escalones" id="escalones" class="form-control">
+        </div>
+        <div style="top:36%;width:100%" class="form-group">
+            <label for="ancho">Anchura en centimetros:</label>
+            <input type="text" name="ancho" placeholder="ancho" id="ancho" class="form-control">
+        </div>
+        <div style="top:54%;width:100%" class="form-group">
+            <label for="alto">Altura en centimetros:</label>
+            <input type="text" name="alto" placeholder="alto" id="alto" class="form-control">
+        </div>
+        <div style="top:90%;left:25%;width:50%;">
+            <input type="submit" value="Siguiente" class="btn btn-info" style="width:100%;background-color: #71A141">
+        </div>
+    </form>
+</div>
+<!-- end Admin view-->
+<% include ../partials/footer %>
+
+</body>
+
+</html>
