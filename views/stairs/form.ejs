@@ -2,57 +2,167 @@
 <html>
 <head>
     <% include ../partials/head %>
-    <style>
-        div{position:absolute;}
-        img{position:absolute;}
-        p{position:absolute;}
-        #borde{padding: 3px 10px;border: #71A141 7px solid; border-radius: 20px;}
-    </style>
+    <link href="/css/stairs/step-wizard.css" rel="stylesheet">
 </head>
 
 <body>
 
 <% include ../partials/header %>
 
-<div style="position:absolute;width:100%;height:8%;background-color: black"></div>
-<img src="img/consulta3.jpg" style="top:8%;width:100%;height:22%">
-<div style="position: absolute;width:100%;height:22%;top:8%;background-color:#282626;opacity:0.7"></div>
-<div style="width:60%;height:4%;top:14%;left:20%;background-color:white;border: 3.5px solid #222222"></div>
-<div style="width:8.5%;height:9%;top:11%;left:16%;background-color:#222222;border-radius: 50%;padding-top: 6%;"></div>
-<div style="width:8.5%;height:9%;top:11%;left:76%;background-color:#222222;border-radius: 50%;padding-top: 6%;"></div>
-<img src="img/1_active.png" style="width:7.2%;height:9%;top:12.8%;left:16.7%;">
-<img src="img/2.png" style="width:7.2%;height:9%;top:12.8%;left:76.7%;">
-<div id="borde" style="width:100%;height:70%;top:30%;"></div>
-<div style="width:90%;height:60%;top:35%;left:5%;">
-    <form action="/" method="post">
-        <div style="width:100%" class="form-group">
-            <label for="material">Material:</label>
-            <select name="material" style="width:100%">
-                <option value="1">Madera</option>
-                <option value="2">Metal</option>
-                <option value="3">Recina</option>
-            </select>
+<div class="container">
+    <header class="jumbotron hero-spacer" style="background-image: url('/img/portfolio/stairs/l-stair.jpg');">
+        <h1 style="color: white">Escaleras</h1>
+    </header>
+    <div class="row">
+        <div class="section">
+            <div class="wizard">
+                <div class="wizard-inner">
+                    <div class="connecting-line"></div>
+                    <ul class="nav nav-tabs" role="tablist">
+
+                        <li role="presentation" class="active">
+                            <a href="#step1" data-toggle="tab" aria-controls="step1" role="tab" title="Step 1">
+                                            <span class="round-tab">
+                                                <span class="step">1</span>
+                                            </span>
+                            </a>
+                        </li>
+
+                        <li role="presentation" class="disabled">
+                            <a href="#step2" data-toggle="tab" aria-controls="step2" role="tab" title="Step 2">
+                                            <span class="round-tab">
+                                                <span class="step">2</span>
+                                            </span>
+                            </a>
+                        </li>
+                        <li role="presentation" class="disabled">
+                            <a href="#step3" data-toggle="tab" aria-controls="step3" role="tab" title="Step 3">
+                                            <span class="round-tab">
+                                                <span class="step">3</span>
+                                            </span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
         </div>
-        <div style="top:18%;width:100%" class="form-group">
-            <label for="numeroEscalones">Numero De Escalones:</label>
-            <input type="text" name="numeroEscalones" placeholder="N°Escalones" id="escalones" class="form-control">
+    </div>
+    <div class="row">
+        <div>
+            <form action="/" method="post"  class="form-group" onsubmit="return esValido(this)">
+                <div class="tab-content">
+                    <div class="tab-pane active" role="tabpanel" id="step1">
+                        <div >
+                            <label for="material">Material:</label>
+                            <select class="form-control" name="material" >
+                                <option value="1">Madera</option>
+                                <option value="2">Metal</option>
+                                <option value="3">Recina</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="largo">Largo en metros:</label>
+                            <input type="number" name="len" placeholder="min: 0.5 ; max: 1.5" id="largo" class="form-control" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="ancho">Anchura en metros:</label>
+                            <input type="number" name="width" placeholder="min: 0.5 ; max: 2.5" id="ancho" class="form-control" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="alto">Altura en metros:</label>
+                            <input type="number" name="heigth" placeholder="min: 0.5 ; max: 2.75" id="alto" class="form-control" required>
+                        </div>
+                        <div class="alert alert-danger" role="alert" id="valido1" style="display:none;">
+                            <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+                            <span class="sr-only">Error:</span>
+                            <p><span id="v1"  style="position:absolute;top:25%"></span></p>
+                        </div>
+                        <div>
+                            <button type="button" class="btn btn-primary next-step">Siguiente</button>
+                        </div>
+                    </div>
+                    <div class="tab-pane" role="tabpanel" id="step2">
+                        <div class="form-group">
+                            <label for="numeroEscalones">Numero De Escalones:</label>
+                            <input type="text" name="numeroEscalones" placeholder="N°Escalones" id="escalones" class="form-control" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="accessDir">Orientacion de Entrada:</label>
+                            <select name="accessDir" class="form-control">
+                                <option value="N">Norte</option>
+                                <option value="S">Sur</option>
+                                <option value="E">Este</option>
+                                <option value="O">Oeste</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="exitDir">Orientacion de Salida:</label>
+                            <select name="exitDir"  class="form-control">
+                                <option value="N">Norte </option>
+                                <option value="S">Sur</option>
+                                <option value="E">este</option>
+                                <option value="O">oeste</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="forma">Forma de la escalera:</label>
+                            <select name="forma" class="form-control" >
+                                <option value="L">En L</option>
+                                <option value="U">En U</option>
+                                <option value="E">En espiral</option>
+                                <option value="R">Recta</option>
+                            </select>
+                        </div>
+                        <div class="alert alert-danger" role="alert" id="valido2" style="display:none;position:absolute;top:70%;height:2%;width:100%;">
+                            <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true" style="position:absolute;top:35%"></span>
+                            <span class="sr-only">Error:</span>
+                            <p><span id="v2" style="position:absolute;top:25%"></span></p>
+                        </div>
+                        <div>
+                            <button type="button" class="btn btn-primary next-step">Siguiente</button>
+                        </div>
+                    </div>
+                    <div class="tab-pane" role="tabpanel" id="step3">
+                        <div class="form-group">
+                            <label for="name">Nombre completo:</label>
+                            <input type="text" name="nombre" placeholder="Nombre" id="nombre" class="form-control" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="lastname">Apellidos:</label>
+                            <input type="text" name="apellido" placeholder="Apellido" id="apellido" class="form-control" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email:</label>
+                            <input type="text" name="email" placeholder="Email" id="email" class="form-control" pattern="^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="phone">Numero De celular:</label>
+                            <input type="text" name="celular" placeholder="N°Celular" id="celular" class="form-control" required>
+                        </div>
+                        <div>
+                            <input type="submit" value="Validar" class="btn btn-info" style="width:100%;background-color: #DC8B1A">
+                        </div>
+                        <div class="alert alert-danger" role="alert" id="valido3" style="display:none;position:absolute;top:75%;height:2%;width:100%;">
+                            <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true" style="position:absolute;top:35%"></span>
+                            <span class="sr-only">Error:</span>
+                            <p><span id="v3" style="position:absolute;top:25%"></span></p>
+                        </div>
+                    </div>
+                </div>
+            </form>
         </div>
-        <div style="top:36%;width:100%" class="form-group">
-            <label for="ancho">Anchura en centimetros:</label>
-            <input type="text" name="ancho" placeholder="ancho" id="ancho" class="form-control">
-        </div>
-        <div style="top:54%;width:100%" class="form-group">
-            <label for="alto">Altura en centimetros:</label>
-            <input type="text" name="alto" placeholder="alto" id="alto" class="form-control">
-        </div>
-        <div style="top:90%;left:25%;width:50%;">
-            <input type="submit" value="Siguiente" class="btn btn-info" style="width:100%;background-color: #71A141">
-        </div>
-    </form>
+    </div>
+    <br>
 </div>
+
+
+</div>
+</body>
 <!-- end Admin view-->
 <% include ../partials/footer %>
-
+<script src="/js/stairs/controlador.js"></script>
+<script src="/js/stairs/index.js"></script>
+<script src="/js/stairs/validacion.js" type="text/javascript"></script>
 </body>
 
 </html>
