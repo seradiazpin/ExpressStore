@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <% include ../partials/head %>
+</head>
+
+<body>
+
+<% include ../partials/header %>
+
+
+<!-- Admin view-->
+<div class="row" style="padding-top: 150px"></div>
+<div class="container-fluid">
+
+    <div class="row">
+        <h1>Proyecto Medidor</h1>
+    </div>
+    <form class="form-group" method="post" action="/measurers/update-measurer/<%= measurer.id %>">
+        <div class="row">
+            <div class="col-lg-2">
+                <label>Diametro</label>
+                <input name="out_diameter" class="form-control" type="text" required value="<%= measurer.out_diameter%>">
+            </div>
+            <div class="col-lg-2">
+                <label>Caudal</label>
+                <input name="flow" class="form-control" type="text" required value="<%= measurer.flow %>">
+            </div>
+            <div class="col-lg-3">
+                <label>Ancho pared</label>
+                <input name="wall_heigth" class="form-control" type="text" required value="<%= measurer.wall_heigth %>">
+            </div>
+            <div class="col-lg-3">
+                <label>Alto pared</label>
+                <input name="wall_width" class="form-control" type="number" step="0.01" required value="<%= measurer.wall_width %>">
+            </div>
+            <div class="col-lg-2">
+                <label>Numero medidores</label>
+                <input name="measurer_number" class="form-control" type="number" step="0.01"required value="<%= measurer.measurer_number %>">
+            </div>
+        </div>
+
+        <br>
+        <div class="row">
+            <div class="col-lg-4"></div>
+            <div class="col-lg-4">
+                <input class="form-control btn btn-success" type="submit" value="Actualizar">
+            </div>
+            <div class="col-lg-4"></div>
+        </div>
+    </form>
+
+</div>
+
+<!-- end Admin view-->
+<% include ../partials/footer %>
+
+</body>
+
+</html>

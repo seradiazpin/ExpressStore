@@ -16,7 +16,7 @@ function esValido(formulario){
         validador = document.getElementById("valido1");
         validador.style.display = "block";
         validador = document.getElementById("v1");
-        validador.innerHTML = validador.innerHTML + "___ Error en alguno de los datos: ancho,alto,largo";
+        validador.innerHTML = validador.innerHTML + "Error en alguno de los datos: ancho,alto,largo";
         huboError();
         return false;
     }
@@ -24,7 +24,7 @@ function esValido(formulario){
         validador = document.getElementById("valido1");
         validador.style.display = "block";
         validador = document.getElementById("v1");
-        validador.innerHTML = validador.innerHTML + "___ Error el ancho,largo o alto no estan en el rango indicado";
+        validador.innerHTML = validador.innerHTML + "Error el ancho,largo o alto no estan en el rango indicado";
         huboError();
         return false;
     }
@@ -32,7 +32,7 @@ function esValido(formulario){
         validador = document.getElementById("valido2");
         validador.style.display = "block";
         validador = document.getElementById("v2");
-        validador.innerHTML = validador.innerHTML + "___ Error en el numero de escalones";
+        validador.innerHTML = validador.innerHTML + "Error en el numero de escalones";
         huboError();
         return false;
     }
@@ -40,28 +40,28 @@ function esValido(formulario){
         validador = document.getElementById("valido3");
         validador.style.display = "block";
         validador = document.getElementById("v3");
-        validador.innerHTML = validador.innerHTML + "___ Error el numero de celular es muy grande";
+        validador.innerHTML = validador.innerHTML + "Error el numero de celular es muy grande";
         return false;
     }
     if(!isNumber(parseFloat(celular))){
         validador = document.getElementById("valido3");
         validador.style.display = "block";
         validador = document.getElementById("v3");
-        validador.innerHTML = validador.innerHTML + "___ Error el numero de celular no es un numero";
+        validador.innerHTML = validador.innerHTML + "Error el numero de celular no es un numero";
         return false;
     }
     if(!campoValidoNoVacioNoNumero(nombre)){
         validador = document.getElementById("valido3");
         validador.style.display = "block";
         validador = document.getElementById("v3");
-        validador.innerHTML = validador.innerHTML + "___ Error el nombre no puede ser vacio o numero";
+        validador.innerHTML = validador.innerHTML + "  Error el nombre no puede ser vacio o numero";
         return false;
     }
     if(!campoValidoNoVacioNoNumero(apellido)){
         validador = document.getElementById("valido3");
         validador.style.display = "block";
         validador = document.getElementById("v3");
-        validador.innerHTML = validador.innerHTML + "___ Error el apellido no puede ser vacio o numero";
+        validador.innerHTML = validador.innerHTML + "  Error el apellido no puede ser vacio o numero";
         return false;
     }
     return true;
@@ -80,7 +80,7 @@ function huboError(){
     var validador = document.getElementById("valido3");
     validador.style.display = "block";
     validador = document.getElementById("v3");
-    validador.innerHTML = validador.innerHTML + "___ Error en el formulario";
+    validador.innerHTML = validador.innerHTML + "  Error en el formulario";
 }
 function estaEnRango(ancho,alto,largo){
     if(alto >= 0.5 && alto <= 2.75 && ancho >= 0.5 && ancho <= 2.5 && largo >= 0.5 && largo <= 1.5)

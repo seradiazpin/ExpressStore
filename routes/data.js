@@ -9,6 +9,7 @@ var jsonParser = bodyParser.json();
 /* Importar esquemas de la base de datos*/
 var Material = require('../database/schemas/material');
 var Provider = require('../database/schemas/provider');
+var Quotation = require('../database/schemas/quotation');
 
 var getMaterial = function (req,res) {
     var querry = {name:req.params.matName};
@@ -43,6 +44,13 @@ router.get('/materials', function(req, res, next) {
 
 router.get('/providers', function(req, res, next) {
     Provider.find({}, function(err, users) {
+        if (err) throw err;
+        res.send(users);
+    });
+});
+
+router.get('/quotations', function(req, res, next) {
+    Quotation.find({}, function(err, users) {
         if (err) throw err;
         res.send(users);
     });

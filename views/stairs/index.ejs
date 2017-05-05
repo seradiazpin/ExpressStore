@@ -43,11 +43,27 @@
                 <div class="caption">
                     <h4><a href="#">Escalera en forma de <%= product.form %></a>
                     </h4>
-                    <h5>Altura:</h5><p><%= product.height%></p>
-                    <h5>Ancho:</h5><p><%= product.width%></p>
-                    <h5>Largo:</h5><p><%= product.len%></p>
-                    <h5>Entrada:</h5><p><%= product.accessDir%></p>
-                    <h5>Salida:</h5><p><%= product.exitDir%></p>
+                    <div class="row">
+                        <div class="col-md-4">
+                            <h5>Altura:</h5><p><%= product.height%> m</p>
+                        </div>
+                        <div class="col-md-4">
+                            <h5>Ancho:</h5><p><%= product.width%> m</p>
+                        </div>
+                        <div class="col-md-4">
+                            <h5>Largo:</h5><p><%= product.len%> m</p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <h5>Entrada:</h5><p><%= product.accessDir%></p>
+                        </div>
+                        <div class="col-md-6">
+                            <h5>Salida:</h5><p><%= product.exitDir%></p>
+                        </div>
+                    </div>
+
+
                 </div>
             </div>
         </div>

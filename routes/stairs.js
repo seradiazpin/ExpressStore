@@ -10,6 +10,7 @@ var jsonParser = bodyParser.json();
 var Stair = require('../database/schemas/stair');
 var Material = require('../database/schemas/material');
 var Provider = require('../database/schemas/provider');
+var Quotation = require('../database/schemas/quotation');
 
 
 /* Metodo para crear y guardar una escalera*/
@@ -22,26 +23,45 @@ var createStair = function (request, response) {
     });
     response.redirect('/stairs/admin');
 };
-var createStairUSER = function (request, response) {
+
+var createStairQuotation = function (request, response) {
     var data = request.body|| {};
-    var stair = new Stair(data);
+
+    var stairData = {
+        form:data.form,
+        accessDir : data.accessDir,
+        exitDir: data.exitDir,
+        height: data.heigth,
+        width: data.width,
+        len:data.len
+    };
+
+
+    var stair = new Stair(stairData);
+
     stair.save(function(err) {
         if (err) throw err;
         console.log('Stair saved successfully!');
     });
-    response.redirect('/stairs');
-};
+    console.log(stair.id);
+    var userData= {
+        complete:false,
+        itemType:0,
+        item:stair.id,
+        clientEmail:data.clientEmail,
+        clientPhone:data.clientPhone,
+        clientName:data.clientName
+    };
+    console.log(userData);
+    var quotation = new Quotation(userData);
 
-var createStair = function (request, response) {
-    var data = request.body|| {};
-    var stair = new Stair(data);
-    stair.save(function(err) {
+    quotation.save(function(err) {
         if (err) throw err;
-        console.log('Stair saved successfully!');
+        console.log('Quotation saved successfully!');
     });
-    response.redirect('/stairs/admin');
-};
 
+    response.redirect('/stairs/');
+};
 
 /* Metodo para crear y guardar un material*/
 var createMaterial = function (request, response) {
@@ -111,6 +131,7 @@ router.post('/new-stair',jsonParser,createStair);
 router.post('/update-stair/:stairId',jsonParser,updateStair);
 router.post('/new-material',jsonParser,createMaterial);
 router.post('/new-provider',jsonParser,createProvider);
+router.post('/new-quotation',jsonParser,createStairQuotation);
 
 
 /* GET Cargar pagina de escaleras de administrador */

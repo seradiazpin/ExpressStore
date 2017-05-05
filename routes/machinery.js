@@ -8,8 +8,8 @@ var jsonParser = bodyParser.json();
 
 /* Importar esquemas de la base de datos*/
 var Machine = require('../database/schemas/machinery');
-var Material = require('../../../Desktop/ExpressStore-master/database/schemas/material');
-var Provider = require('../../../Desktop/ExpressStore-master/database/schemas/provider');
+var Material = require('../database/schemas/material');
+var Provider = require('../database/schemas/provider');
 
 
 /* Metodo para crear y guardar una escalera*/

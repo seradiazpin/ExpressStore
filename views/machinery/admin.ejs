@@ -33,26 +33,22 @@
             <table class="table table-striped">
                 <thead>
                 <tr>
-                    <th>Forma</th>
-                    <th>Direccion Entrada</th>
-                    <th>Direccion Salida</th>
+                    <th>Tipo</th>
                     <th>Altura</th>
+                    <th>Peso</th>
                     <th>Ancho</th>
-                    <th>Largo</th>
-                    <th>Editar</th>
-                    <th>Eliminar</th>
+                    <th>Caballos de fuerza</th>
                 </tr>
                 </thead>
 
                 <tbody>
-                <% stairs.forEach(function(stair) { %>
+                <% machines.forEach(function(machine) { %>
                 <tr>
-                        <td><%= stair.form %></td>
-                        <td><%= stair.accessDir %></td>
-                        <td><%= stair.exitDir %></td>
-                        <td><%= stair.height %></td>
-                        <td><%= stair.width %></td>
-                        <td><%= stair.len %></td>
+                        <td><%= machine.type %></td>
+                        <td><%= machine.height %></td>
+                        <td><%= machine.weight %></td>
+                        <td><%= machine.width %></td>
+                        <td><%= machine.hp %></td>
                         <td><a  class="btn btn-info" href="/stairs/edit-stair/<%= stair.id%>">Editar</a></td>
                         <td><a class="btn btn-danger" href="/stairs/delete/<%= stair.id%>">Borrar</a></td>
                 </tr>
