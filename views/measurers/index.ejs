@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <% include ../partials/head %>
+</head>
+
+<body>
+
+<% include ../partials/header %>
+
+
+<!-- Page Content -->
+<div class="container">
+
+    <!-- Jumbotron Header -->
+    <header class="jumbotron hero-spacer" style="background-image: url('/img/portfolio/valveBox/valve.jpg');">
+        <h1 style="color: white">Escaleras</h1>
+    </header>
+    <h1>Descripcion del producto</h1>
+    <p>Contenido de la descripción.</p>
+
+
+    <a href="form" class="btn btn-primary">Cotizar ahora!</a>
+
+
+    <hr>
+
+    <!-- Title -->
+    <div class="row">
+        <div class="col-lg-12">
+            <h3>Catalogo</h3>
+        </div>
+    </div>
+    <!-- /.row -->
+
+    <!-- Page Features -->
+    <div class="row">
+        <% measurers.forEach(function(product) { %>
+        <div class="col-sm-3  col-md-4 col-lg-4">
+            <div class="thumbnail">
+                <img src="http://placehold.it/320x150" alt="">
+                <div class="caption">
+                    <h4><a href="#">Medidores</a>
+                    </h4>
+                    <h5>Diametro de salida:</h5><p><%= product.out_diameter%></p>
+                    <h5>Caudal:</h5><p><%= product.flow%></p>
+                    <h5>Alto de pared:</h5><p><%= product.wall_heigth%></p>
+                    <h5>Ancho de pared:</h5><p><%= product.wall_width%></p>
+                    <h5>Número de medidores:</h5><p><%= product.measurer_number%></p>
+                </div>
+            </div>
+        </div>
+        <% }); %>
+    </div>
+    <!-- /.row -->
+
+    <hr>
+
+    <!-- Footer -->
+    <footer>
+        <div class="row">
+            <div class="col-lg-12">
+                <p>Copyright &copy; Your Website 2014</p>
+            </div>
+        </div>
+    </footer>
+
+</div>
+<% include ../partials/footer %>
+</body>
+
+</html>
+

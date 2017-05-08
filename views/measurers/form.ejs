@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <% include ../partials/head %>
+    <link href="/css/stairs/step-wizard.css" rel="stylesheet">
+</head>
+
+<body>
+
+<% include ../partials/header %>
+
+<div class="container">
+    <header class="jumbotron hero-spacer" style="background-image: url('/img/portfolio/valveBox/valve.jpg');">
+        <h1 style="color: white">Escaleras</h1>
+    </header>
+    <div class="row">
+        <div class="section">
+            <div class="wizard">
+                <div class="wizard-inner">
+                    <div class="connecting-line"></div>
+                    <ul class="nav nav-tabs" role="tablist">
+
+                        <li role="presentation" class="active">
+                            <a href="#step1" data-toggle="tab" aria-controls="step1" role="tab" title="Step 1">
+                                <span class="round-tab">
+                                    <span class="step">1</span>
+                                </span>
+                            </a>
+                        </li>
+
+                        <li role="presentation" class="disabled">
+                            <a href="#step2" data-toggle="tab" aria-controls="step2" role="tab" title="Step 2">
+                                <span class="round-tab">
+                                    <span class="step">2</span>
+                                </span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div>
+            <form action="/measurers/new-quotation" method="post"  class="form-group" onsubmit="return esValido(this)">
+                <div class="tab-content">
+                    <div class="tab-pane active" role="tabpanel" id="step1">
+                        <div >
+                            <label for="out_diameter">Diametro de salida:</label>
+                            <select class="form-control" name="out_diameter" >
+                                <option selected></option>
+                                <option value="0.5">1/2"</option>
+                                <option value="0.75">3/4"</option>
+                                <option value="0.1">1"</option> 
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="flow">Caudal:</label>
+                            <input name="flow" class="form-control" placeholder="min: 0.5 ; max: 20" type="number" step="0.5" min="0.5" max="20" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="wall_heigth">Alto de la pared:</label>
+                            <input name="wall_heigth" class="form-control" placeholder="min: 1 ; max: 2.2" type="number" step="0.1" min="1" max="2.2" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="wall_width">Ancho de la pared:</label>
+                            <input name="wall_width" class="form-control" placeholder="min: 0.6; max: 5" type="number" step="0.1" min="0.6" max="5" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="measurer_number">Numero de medidores:</label>
+                            <input name="measurer_number" class="form-control" placeholder="min: 2; max: 20" type="number" min="2" max="20" step="1" required>
+                        </div>
+                        <div class="alert alert-danger" role="alert" id="valido1" style="display:none;">
+                            <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+                            <span class="sr-only">Error:</span>
+                            <p><span id="v1"  style="position:absolute;top:25%"></span></p>
+                        </div>
+                        <div>
+                            <button type="button" class="btn btn-primary next-step">Siguiente</button>
+                        </div>
+                    </div>
+                   <!-- <div class="tab-pane" role="tabpanel" id="step2">
+                        <div class="form-group">
+                            <label for="numeroEscalones">Numero De Escalones:</label>
+                            <input type="text" name="numeroEscalones" placeholder="N°Escalones" id="escalones" class="form-control" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="accessDir">Orientacion de Entrada:</label>
+                            <select name="accessDir" class="form-control">
+                                <option value="N">Norte</option>
+                                <option value="S">Sur</option>
+                                <option value="E">Este</option>
+                                <option value="O">Oeste</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="exitDir">Orientacion de Salida:</label>
+                            <select name="exitDir"  class="form-control">
+                                <option value="N">Norte </option>
+                                <option value="S">Sur</option>
+                                <option value="E">este</option>
+                                <option value="O">oeste</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="forma">Forma de la escalera:</label>
+                            <select name="forma" class="form-control" >
+                                <option value="L">En L</option>
+                                <option value="U">En U</option>
+                                <option value="E">En espiral</option>
+                                <option value="R">Recta</option>
+                            </select>
+                        </div>
+                        <div class="alert alert-danger" role="alert" id="valido2" style="display:none;position:absolute;top:70%;height:2%;width:100%;">
+                            <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true" style="position:absolute;top:35%"></span>
+                            <span class="sr-only">Error:</span>
+                            <p><span id="v2" style="position:absolute;top:25%"></span></p>
+                        </div>
+                        <div>
+                            <button type="button" class="btn btn-primary next-step">Siguiente</button>
+                        </div>
+                    </div> -->
+                    <div class="tab-pane" role="tabpanel" id="step2">
+                        <div class="form-group">
+                            <label for="name">Nombre completo:</label>
+                            <input type="text" name="clientName" placeholder="Nombre" id="nombre" class="form-control" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email:</label>
+                            <input type="email" name="clientEmail" placeholder="Email" id="email" class="form-control" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="phone">Numero De celular:</label>
+                            <input type="text" name="clientPhone" placeholder="N°Celular" id="celular" class="form-control" required>
+                        </div>
+                        <div>
+                            <input type="submit" value="Validar" class="btn btn-info" style="width:100%;background-color: #DC8B1A">
+                        </div>
+                        <div class="alert alert-danger" role="alert" id="valido2" style="display:none">
+                            <i class="glyphicon glyphicon-exclamation-sign" id="v3"></i>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+    <br>
+</div>
+
+
+</div>
+</body>
+<!-- end Admin view-->
+<% include ../partials/footer %>
+<script src="/js/measurers/controlador.js"></script>
+<script src="/js/measurers/index.js"></script>
+<script src="/js/measurers/validacion.js" type="text/javascript"></script>
+</body>
+
+</html>
