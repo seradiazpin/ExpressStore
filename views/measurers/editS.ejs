@@ -14,29 +14,34 @@
 <div class="container-fluid">
 
     <div class="row">
-        <h1>Proyecto Medidor</h1>
+        <h1>Proyecto Escaleras</h1>
     </div>
     <form class="form-group" method="post" action="/measurers/update-measurer/<%= measurer.id %>">
         <div class="row">
             <div class="col-lg-2">
-                <label>Diametro</label>
-                <input name="out_diameter" class="form-control" type="text" required value="<%= measurer.out_diameter%>">
+                <label>Diametro de salida</label>
+                <select name="out_diameter" class="form-control" required>
+                    <option selected></option>
+                    <option value="0.5" <% if(measurer.out_diameter == 0.5){%> selected <%} %> >1/2"</option>
+                    <option value="0.75" <% if(measurer.out_diameter == 0.75){%> selected <%} %>>3/4"</option>
+                    <option value="1"<% if(measurer.out_diameter == 1){%> selected <%} %>>1"</option>           
+                </select>
             </div>
             <div class="col-lg-2">
                 <label>Caudal</label>
-                <input name="flow" class="form-control" type="text" required value="<%= measurer.flow %>">
+                <input name="flow" class="form-control" type="number" required value="<%= measurer.flow %>">
             </div>
-            <div class="col-lg-3">
-                <label>Ancho pared</label>
-                <input name="wall_heigth" class="form-control" type="text" required value="<%= measurer.wall_heigth %>">
-            </div>
-            <div class="col-lg-3">
+            <div class="col-lg-2">
                 <label>Alto pared</label>
+                <input name="wall_heigth" class="form-control" type="number" required value="<%= measurer.wall_heigth %>">
+            </div>
+            <div class="col-lg-2">
+                <label>Ancho pared</label>
                 <input name="wall_width" class="form-control" type="number" step="0.01" required value="<%= measurer.wall_width %>">
             </div>
             <div class="col-lg-2">
-                <label>Numero medidores</label>
-                <input name="measurer_number" class="form-control" type="number" step="0.01"required value="<%= measurer.measurer_number %>">
+                <label>Numero de medidores</label>
+                <input name="measurer_number" class="form-control" type="number" step="0.01" required value="<%= measurer.measurer_number %>">
             </div>
         </div>
 
