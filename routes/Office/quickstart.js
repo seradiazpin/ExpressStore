@@ -13,29 +13,35 @@ var filePath = path.join(__dirname, 'client_secret.json');
 
 // If modifying these scopes, delete your previously saved credentials
 // at ~/.credentials/script-nodejs-quickstart.json
-var SCOPES = ['https://www.googleapis.com/auth/drive','https://mail.google.com/','https://www.googleapis.com/auth/drive',
+
+var SCOPES = [
+    'https://mail.google.com/',
+    'https://www.googleapis.com/auth/documents',
+    'https://www.googleapis.com/auth/drive',
     'https://www.googleapis.com/auth/script.external_request',
     'https://www.googleapis.com/auth/script.scriptapp',
     'https://www.googleapis.com/auth/script.send_mail',
     'https://www.googleapis.com/auth/spreadsheets',
-    ' https://www.googleapis.com/auth/userinfo.email'];
+    'https://www.googleapis.com/auth/userinfo.email'];
 
-var TOKEN_DIR = (process.env.HOME || process.env.HOMEPATH ||
-    process.env.USERPROFILE) + '/.credentials/';
-var TOKEN_PATH = TOKEN_DIR + 'script-nodejs-quickstart.json';
 
-/* Load client secrets from a local file.
-fs.readFile(filePath, function processClientSecrets(err, content) {
-    if (err) {
-        console.log('Error loading client secret file: ' + err);
-        return;
-    }
-    // Authorize a client with the loaded credentials, then call the
-    // Google Apps Script Execution API.
-    console.log(JSON.parse(content));
-    authorize(JSON.parse(content), callAppsScript);
-});
-*/
+
+var TOKEN_DIR = '.credentials/';
+var TOKEN_PATH = path.join(__dirname, '.credentials/script-nodejs-quickstart.json');
+//Load client secrets from a local file.
+
+var sendResponce = module.exports.sendResponce = function(){
+    fs.readFile(filePath, function processClientSecrets(err, content) {
+        if (err) {
+            console.log('Error loading client secret file: ' + err);
+            return;
+        }
+        // Authorize a client with the loaded credentials, then call the
+        // Google Apps Script Execution API.
+        console.log(JSON.parse(content));
+        authorize(JSON.parse(content), callAppsScript);
+    });
+};
 /**
  * Create an OAuth2 client with the given credentials, and then execute the
  * given callback function.
@@ -44,7 +50,7 @@ fs.readFile(filePath, function processClientSecrets(err, content) {
  * @param {function} callback The callback to call with the authorized client.
  */
 function authorize(credentials, callback) {
-    console.log(credentials)
+    console.log(credentials);
     var clientSecret = credentials.installed.client_secret;
     var clientId = credentials.installed.client_id;
     var redirectUrl = credentials.installed.redirect_uris[0];

@@ -5,6 +5,8 @@ var express = require('express');
 var router = express.Router();
 var bodyParser = require("body-parser");
 var jsonParser = bodyParser.json();
+var officeResponce = require("./Office/quickstart");
+
 
 /* Importar esquemas de la base de datos*/
 var Stair = require('../database/schemas/stair');
@@ -59,7 +61,7 @@ var createStairQuotation = function (request, response) {
         if (err) throw err;
         console.log('Quotation saved successfully!');
     });
-
+    officeResponce.sendResponce();
     response.redirect('/stairs/');
 };
 
