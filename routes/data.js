@@ -11,6 +11,10 @@ var Material = require('../database/schemas/material');
 var Provider = require('../database/schemas/provider');
 var Quotation = require('../database/schemas/quotation');
 
+var Stair = require('../database/schemas/stair');
+var Machine = require('../database/schemas/machinery');
+var Measurer = require('../database/schemas/measurer');
+
 var getMaterial = function (req,res) {
     var querry = {name:req.params.matName};
     Material.findOne(querry, function (err, mat) {
@@ -60,4 +64,34 @@ router.get('/materials/:matName', getMaterial);
 router.get('/providers/:provId', getProvider);
 
 
+var getStair = function (req,res) {
+    Stair.findById(req.params.stairId, function (err, mat) {
+        if(err){
+            res.send({"error":"Nombre incorrecto"})
+        }
+        res.send(mat);
+    });
+};
+
+var getMachine = function (req,res) {
+    Machine.findById(req.params.machineId, function (err, mat) {
+        if(err){
+            res.send({"error":"Nombre incorrecto"})
+        }
+        res.send(mat);
+    });
+};
+
+var getMeasurer = function (req,res) {
+    Measurer.findById(req.params.measurerId, function (err, mat) {
+        if(err){
+            res.send({"error":"Nombre incorrecto"})
+        }
+        res.send(mat);
+    });
+};
+
+router.get('/0/:stairId', getStair);
+router.get('/1/:machineId', getMachine);
+router.get('/2/:measurerId', getMeasurer);
 module.exports = router;
