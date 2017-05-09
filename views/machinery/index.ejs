@@ -20,7 +20,7 @@
     <p>Maquinaria pesada a la medida de sus necesidades.</p>
     <p>El usuario podra seleccionar la maquinaria que desea cotizar, recibira el precio medio y el tiempo necesario para la entrega de la misma.</p>
 
-    <a href="#" class="btn btn-primary">Cotizar ahora!</a>
+    <a href="#" class="btn btn-primary" data-toggle="modal" data-target="#myQuote">Cotizar ahora!</a>
 
     <hr>
 
@@ -39,15 +39,44 @@
             <div class="thumbnail">
                 <img src="http://placehold.it/320x150" alt="">
                 <div class="caption">
-                    <h4><a href="#">Maquinaria de tipo <%= product.type %></a>
+                    <h4><a href="" data-toggle="modal" data-target="#myQuote">Maquinaria de tipo <%= product.type %></a>
                     </h4>
-                    <h5>Peso:</h5><p><%= product.weigth%></p>
-                    <h5>Alto:</h5><p><%= product.heigth%></p>
-                    <h5>ancho:</h5><p><%= product.width%></p>
-                    <h5>Poder (HP):</h5><p><%= product.hp%></p>
+
+                </div>
+            </div>
+
+
+            <div id="myQuote" class="modal fade" role="dialog">
+              <div class="modal-dialog">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">Nueva Cotizacion</h4>
+                  </div>
+                  <div class="modal-body">
+                    <p>Some text in the modal.</p>
+                    <h5>Tipo:<p><%= product.type%></p></h5>
+                    <h5>Peso:<p><%= product.weight%></p></h5>
+                    <h5>Capacidad:<p><%= product.capacity%></p></h5>
+                    <h5>Modelo Motor:<p><%= product.engineModel%></p></h5>
+                    <h5>Enfriado por Agua:<p><%= product.waterCooling%></p></h5>
+                    <h5>Velocidad de Ruta:<p><%= product.routeSpeed%></p></h5>
+                    <h5>Velocidad de Rotacion:<p><%= product.turningSpeed%></p></h5>
+                    <h5>Capacidad del Tanque:<p><%= product.fuelCapacity%></p></h5>
+                    <h5>Longitud:<p><%= product.length%></p></h5>
+                    <h5>Ancho:<p><%= product.width%></p></h5>
+                    <h5>Alto :<p><%= product.height%></p></h5>
+                    <h5>Longitud Brazo:<p><%= product.armLength%></p></h5>
+                    <h5>Horas Trabajo:<p><%= product.workHours%></p></h5>
+                  </div>
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                  </div>
                 </div>
             </div>
         </div>
+
+      </div>
         <% }); %>
     </div>
     <!-- /.row -->
@@ -64,8 +93,28 @@
     </footer>
 
 </div>
+
+<!-- <div id="myQuote" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+
+
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Nueva Cotizacion</h4>
+      </div>
+      <div class="modal-body">
+        <p>Some text in the modal.</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>  -->
+
 <% include ../partials/footer %>
+
 </body>
 
 </html>
-

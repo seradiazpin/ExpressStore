@@ -57,7 +57,7 @@ var createMeasurerQuotation = function (request, response) {
         if (err) throw err;
         console.log('Quotation saved successfully!');
     });
-    
+
     response.redirect('/measurers/');
 };
 

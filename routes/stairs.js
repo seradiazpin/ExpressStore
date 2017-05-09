@@ -135,7 +135,6 @@ router.post('/new-material',jsonParser,createMaterial);
 router.post('/new-provider',jsonParser,createProvider);
 router.post('/new-quotation',jsonParser,createStairQuotation);
 
-
 /* GET Cargar pagina de escaleras de administrador */
 router.get('/admin', function(req, res, next) {
     Stair.find({}, function(err, sta) {
@@ -151,7 +150,6 @@ router.get('/admin', function(req, res, next) {
     });
 
 });
-
 
 router.get('/form', function(req, res, next) {
     res.render('stairs/form');
