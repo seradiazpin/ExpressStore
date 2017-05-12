@@ -36,6 +36,13 @@ var getProvider = function (req,res) {
     });
 };
 
+var completeQuotation = function (req,res) {
+    Quotation.findByIdAndUpdate(req.params.quotId, { $set: {complete:true}}, { new: true }, function (err, quot) {
+        if (err) throw err
+        res.send(quot)
+    });
+};
+
 /* GET datos para office.*/
 router.get('/', function(req, res, next) {
     res.render('data/points');
@@ -65,6 +72,7 @@ router.get('/quotations', function(req, res, next) {
 
 router.get('/materials/:matName', getMaterial);
 router.get('/providers/:provId', getProvider);
+router.get('/completeQuotation/:quotId', completeQuotation);
 
 
 var getStair = function (req,res) {
