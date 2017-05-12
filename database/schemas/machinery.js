@@ -17,7 +17,6 @@ var machinerySchema = new Schema({
     length: { type: Number, required: true },
     width: { type: Number, required: true },
     height: { type: Number, required: true },
-    armLength: { type: Number, required: true },
     workHours: { type: Number, required: true }
 });
 
