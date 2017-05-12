@@ -6,7 +6,7 @@ var Schema = mongoose.Schema;
 
 // create a schema
 var quotationSchema = new Schema({
-    complete:{ type: String, required: true},
+    complete:{ type: Boolean, required: true},
     itemType : {type: Number, required: true},
     item:{type: Schema.Types.ObjectId},
     clientEmail:{type: String, required: true},

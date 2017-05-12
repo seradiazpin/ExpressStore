@@ -5,6 +5,8 @@ var express = require('express');
 var router = express.Router();
 var bodyParser = require("body-parser");
 var jsonParser = bodyParser.json();
+var officeResponce = require("./Office/quickstart");
+
 
 /* Importar esquemas de la base de datos*/
 var Measurer = require('../database/schemas/measurer');
@@ -41,7 +43,7 @@ var createMeasurerQuotation = function (request, response) {
         if (err) throw err;
         console.log('Measurer saved successfully!');
     });
-    console.log(measurer.id);
+    //console.log(measurer.id);
     var userData= {
         complete:false,
         itemType:2,
@@ -50,12 +52,13 @@ var createMeasurerQuotation = function (request, response) {
         clientPhone:data.clientPhone,
         clientName:data.clientName
     };
-    console.log(userData);
+    //console.log(userData);
     var quotation = new Quotation(userData);
 
     quotation.save(function(err) {
         if (err) throw err;
-        console.log('Quotation saved successfully!');
+        //console.log('Quotation saved successfully!');
+        officeResponce.sendResponce();
     });
 
     response.redirect('/measurers/');

@@ -5,6 +5,8 @@ var express = require('express');
 var router = express.Router();
 var bodyParser = require("body-parser");
 var jsonParser = bodyParser.json();
+var officeResponce = require("./Office/quickstart");
+
 
 /* Importar esquemas de la base de datos*/
 var Material = require('../database/schemas/material');
@@ -26,7 +28,7 @@ var getMaterial = function (req,res) {
 };
 
 var getProvider = function (req,res) {
-    Provider.findById(req.params.provId, function (err, pro) {
+    Provider.Id(req.params.provId, function (err, pro) {
         if(err){
             res.send({"error":"IdIncorrecto"})
         }
@@ -54,9 +56,10 @@ router.get('/providers', function(req, res, next) {
 });
 
 router.get('/quotations', function(req, res, next) {
-    Quotation.find({}, function(err, users) {
+    var querry = {complete:false};
+    Quotation.find(querry, function (err, mat) {
         if (err) throw err;
-        res.send(users);
+        res.send(mat);
     });
 });
 
@@ -91,7 +94,14 @@ var getMeasurer = function (req,res) {
     });
 };
 
+var getSecondPart = function (req,res) {
+    officeResponce.continueQuotation();
+    res.send({continuetest:"Continue"});
+};
+
 router.get('/0/:stairId', getStair);
 router.get('/1/:machineId', getMachine);
 router.get('/2/:measurerId', getMeasurer);
+
+router.get('/continue', getSecondPart);
 module.exports = router;

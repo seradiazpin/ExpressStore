@@ -42,6 +42,10 @@ var sendResponce = module.exports.sendResponce = function(){
         authorize(JSON.parse(content), callAppsScript);
     });
 };
+
+var continueQuotation = module.exports.continueQuotation = function(){
+    console.log("Continue");
+};
 /**
  * Create an OAuth2 client with the given credentials, and then execute the
  * given callback function.
