@@ -8,8 +8,9 @@ var jsonParser = bodyParser.json();
 
 /* Importar esquemas de la base de datos*/
 var Machine = require('../database/schemas/machinery');
+var MachineCat = require('../database/schemas/machineryCat');
 var Material = require('../database/schemas/material');
-var Provider = require('../database/schemas/provider');
+var Provider = require('../database/schemas/providerMachines');
 
 
 /* Metodo para crear y guardar una escalera*/
@@ -42,6 +43,29 @@ var updateMachine = function (request, response) {
     });
 };
 
+/* Categorias */
+var createMachineCat = function (request, response) {
+    var data = request.body|| {};
+    var machineCat = new MachineCat(data);
+    machineCat.save(function(err) {
+        if (err) throw err;
+        console.log('Machine Cat saved successfully!');
+    });
+    response.redirect('/machinery/admin');
+};
+
+
+/* Proveedores */
+var createProvider = function (request, response) {
+    var data = request.body|| {};
+    var provider = new Provider(data);
+    provider.save(function(err) {
+        if (err) throw err;
+        console.log('Machine Cat saved successfully!');
+    });
+    response.redirect('/machinery/admin');
+};
+
 router.get('/', function(req, res, next) {
     Machine.find({}, function(err, mac) {
         if (err) throw err;
@@ -49,14 +73,29 @@ router.get('/', function(req, res, next) {
     });
 });
 
+router.get('/components', function(req, res, next) {
+  // Revisar y completar para recibir parametros
+        res.render('machinery/components');
+});
+
 router.get('/admin', function(req, res, next) {
     Machine.find({}, function(err, mac) {
                 if (err) throw err;
-                res.render('machinery/admin', {machines:mac});
+          MachineCat.find({},function(err,cat){
+                    if (err) throw err;
+                  Provider.find({},function(err,prov){
+                        if (err) throw err;
+                            res.render('machinery/admin',{machines:mac,categories:cat,providers:prov});
+                  });
+          });
     });
 });
 
+
+
 router.post('/new-machine',jsonParser,createMachine);
+router.post('/new-machineCat',jsonParser,createMachineCat);
+router.post('/new-provider',jsonParser,createProvider);
 router.post('/edit-machinery/:machineryId',jsonParser,updateMachine);
 router.post('/delete/:machineryId',jsonParser,deleteMachine);
 
