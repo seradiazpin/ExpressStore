@@ -56,7 +56,6 @@ var createStairQuotation = function (request, response) {
     };
     console.log(userData);
     var quotation = new Quotation(userData);
-
     quotation.save(function(err) {
         if (err) throw err;
         console.log('Quotation saved successfully!');
@@ -101,10 +100,7 @@ var deleteStair = function (request, response) {
 var updateStair = function (request, response) {
     console.log(request.params.stairId);
     var data = request.body|| {};
-    Stair.findByIdAndUpdate(request.params.stairId, { $set: data}, { new: true }, function (err, stair) {
-        if (err) throw err;
-        response.redirect('/stairs/admin');
-    });
+
 };
 
 router.get('/',function (request, response) {

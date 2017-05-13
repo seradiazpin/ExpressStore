@@ -73,9 +73,12 @@ router.get('/', function(req, res, next) {
     });
 });
 
-router.get('/components', function(req, res, next) {
+router.get('/components/:machineId', function(req, res, next) {
   // Revisar y completar para recibir parametros
-        res.render('machinery/components');
+    Machine.findById(req.params.machineId, function(err, mac) {
+        if (err) throw err;
+        res.render('machinery/components', {machine:mac});
+    });
 });
 
 router.get('/admin', function(req, res, next) {
