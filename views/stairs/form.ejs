@@ -53,6 +53,36 @@
                 <div class="tab-content">
                     <div class="tab-pane active" role="tabpanel" id="step1">
                         <div class="form-group">
+                            <label for="forma">Forma de la escalera:</label>
+                            <select name="form" id="formId" class="form-control" >
+                                <option value="L">En L</option>
+                                <option value="U">En U</option>
+                                <option value="R">Recta</option>
+                            </select>
+                        </div>
+                        <div id="formCondition">
+                            <div class="form-group">
+                                <label for="accessDir">Direccion de entrada:</label>
+                                <label class="radio-inline"><input type="radio" name="accessDir" value="D"><i class="glyphicon glyphicon-arrow-up"> Derecha</i></label>
+                                <label class="radio-inline"><input type="radio" name="accessDir" value="I"><i class="glyphicon glyphicon-arrow-down"> Izquierda</i></label>
+                            </div>
+                            <div class="form-group">
+                                <label for="exitDir">Orientacion de Salida:</label>
+                                <label class="radio-inline"><input type="radio" name="exitDir" value="D"><i class="glyphicon glyphicon-arrow-up"> Derecha</i></label>
+                                <label class="radio-inline"><input type="radio" name="exitDir" value="I"><i class="glyphicon glyphicon-arrow-down"> Izquierda</i></label>
+                            </div>
+                        </div>
+                        <div class="alert alert-danger" role="alert" id="valido2" style="display:none;">
+                            <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+                            <span class="sr-only">Error:</span>
+                            <p><span id="v2"></span></p>
+                        </div>
+                        <div>
+                            <button type="button" class="btn btn-primary next-step">Siguiente</button>
+                        </div>
+                    </div>
+                    <div class="tab-pane" role="tabpanel" id="step2">
+                        <div class="form-group">
                             <label for="largo">Largo en metros:</label>
                             <input type="number" name="len" placeholder="min: 0.5 ; max: 1.5"  id="largo" class="form-control" required>
                         </div>
@@ -69,42 +99,20 @@
                             <span class="sr-only">Error:</span>
                             <p><span id="v1"></span></p>
                         </div>
-                        <div>
-                            <button type="button" class="btn btn-primary next-step">Siguiente</button>
+                        <div class="error1 disabled">
+                            <p class="alert-danger">
+                                No se puede cubrir esa altura con el ancho proporcionado
+                            </p>
                         </div>
-                    </div>
-                    <div class="tab-pane" role="tabpanel" id="step2">
-                        <div class="form-group">
-                            <label for="accessDir">Orientacion de Entrada:</label>
-                            <label class="radio-inline"><input type="radio" name="accessDir" value="N"><i class="glyphicon glyphicon-arrow-up"> Norte</i></label>
-                            <label class="radio-inline"><input type="radio" name="accessDir" value="S"><i class="glyphicon glyphicon-arrow-down"> Sur</i></label>
-                            <label class="radio-inline"><input type="radio" name="accessDir" value="O"><i class="glyphicon glyphicon-arrow-left"> Oeste</i></label>
-                            <label class="radio-inline"><input type="radio" name="accessDir" value="E"><i class="glyphicon glyphicon-arrow-right"> Este</i></label>
-                        </div>
-                        <div class="form-group">
-                            <label for="exitDir">Orientacion de Salida:</label>
-                            <label class="radio-inline"><input type="radio" name="exitDir" value="N"><i class="glyphicon glyphicon-arrow-up"> Norte</i></label>
-                            <label class="radio-inline"><input type="radio" name="exitDir" value="S"><i class="glyphicon glyphicon-arrow-down"> Sur</i></label>
-                            <label class="radio-inline"><input type="radio" name="exitDir" value="O"><i class="glyphicon glyphicon-arrow-left"> Oeste</i></label>
-                            <label class="radio-inline"><input type="radio" name="exitDir" value="E"><i class="glyphicon glyphicon-arrow-right"> Este</i></label>
-                        </div>
-                        <div class="form-group">
-                            <label for="forma">Forma de la escalera:</label>
-                            <select name="form" class="form-control" >
-                                <option value="L">En L</option>
-                                <option value="U">En U</option>
-                                <option value="E">En espiral</option>
-                                <option value="R">Recta</option>
-                            </select>
-                        </div>
-                        <div class="alert alert-danger" role="alert" id="valido2" style="display:none;">
-                            <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
-                            <span class="sr-only">Error:</span>
-                            <p><span id="v2"></span></p>
+                        <div class="error2 disabled">
+                            <p class="alert-danger">
+                                No se puede cubrir esa altura con el ancho proporcionado
+                            </p>
                         </div>
                         <div>
-                            <button type="button" class="btn btn-primary next-step">Siguiente</button>
+                            <button type="button" class="btn btn-primary next-stepData">Siguiente</button>
                         </div>
+
                     </div>
                     <div class="tab-pane" role="tabpanel" id="step3">
                         <div class="form-group">
