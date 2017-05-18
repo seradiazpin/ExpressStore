@@ -22,6 +22,34 @@
             <li class="list-group-item">
                 <h6>Material</h6><p>/data/providers/IDPROVEEDOR</p>
             </li>
+            <li class="list-group-item">
+                <h6>Continuar cotizacion</h6><p>/data/continue</p>
+            </li>
+            <li class="list-group-item">
+                <h6>Escalera</h6><p>/data/0/IDESCALERA</p>
+                <h6>Maquina</h6><p>/data/1/IDMAQUINA</p>
+                <h6>Medidor</h6><p>/data/2/IDMEDIDOR</p>
+            </li>
+            <li class="list-group-item">
+                <h6>Completar cotizacion: (Al final final, pasar id de cotizacion) </h6><p>/completeQuotation/QUOTATIONID</p>
+            </li>
+            <li class="list-group-item">
+                <h6>Cotizaciones incompletas</h6><p>/data/quotations</p>
+                <p>Estructura</p>
+
+                <p>0 : Escalerav
+                1 : Maquinariav
+                2 : Medidores</p>
+                <p>{</p>
+                <p>     <b>complete</b>: false,</p>
+                <p>     <b>itemType</b> : 0/1/2,</p>
+                <p>     <b>item</b>:id </p>
+                <p>     <b>clientEmail</b>: email</p>
+                <p>     <b>clientPhone</b>:telefono</p>
+                <p>     <b>clientName</b>:nombre</p>
+                <p>} </p>
+
+            </li>
         </ul>
     </div>
 </div>

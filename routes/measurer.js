@@ -5,11 +5,14 @@ var express = require('express');
 var router = express.Router();
 var bodyParser = require("body-parser");
 var jsonParser = bodyParser.json();
+var officeResponce = require("./Office/quickstart");
+
 
 /* Importar esquemas de la base de datos*/
 var Measurer = require('../database/schemas/measurer');
 var Material = require('../database/schemas/material');
 var Provider = require('../database/schemas/provider');
+var Quotation = require('../database/schemas/quotation');
 
 
 var createmeasurer = function (request, response) {
@@ -21,6 +24,46 @@ var createmeasurer = function (request, response) {
     });
     response.redirect('/measurers/admin');
 };
+
+var createMeasurerQuotation = function (request, response) {
+    var data = request.body|| {};
+
+    var measurerData = {
+        out_diameter:data.out_diameter,
+        flow : data.flow,
+        wall_heigth: data.wall_heigth,
+        wall_width: data.wall_width,
+        measurer_number: data.measurer_number
+    };
+
+
+    var measurer = new Measurer(measurerData);
+
+    measurer.save(function(err) {
+        if (err) throw err;
+        console.log('Measurer saved successfully!');
+    });
+    //console.log(measurer.id);
+    var userData= {
+        complete:false,
+        itemType:2,
+        item:measurer.id,
+        clientEmail:data.clientEmail,
+        clientPhone:data.clientPhone,
+        clientName:data.clientName
+    };
+    //console.log(userData);
+    var quotation = new Quotation(userData);
+
+    quotation.save(function(err) {
+        if (err) throw err;
+        //console.log('Quotation saved successfully!');
+        officeResponce.sendResponce();
+    });
+
+    response.redirect('/measurers/');
+};
+
 
 
 /* Metodo para crear y guardar un material*/
@@ -48,7 +91,7 @@ var createProvider = function (request, response) {
 
 var deletemeasurer = function (request, response) {
     console.log(request.params.measurerId);
-    measurer.findByIdAndRemove(request.params.measurerId, function (err) {
+    Measurer.findByIdAndRemove(request.params.measurerId, function (err) {
 
         if (err) throw err;
         console.log('measurer Removed successfully!');
@@ -85,6 +128,8 @@ router.post('/new-measurer',jsonParser,createmeasurer);
 router.post('/update-measurer/:measurerId',jsonParser,updatemeasurer);
 router.post('/new-material',jsonParser,createMaterial);
 router.post('/new-provider',jsonParser,createProvider);
+router.post('/new-quotation',jsonParser,createMeasurerQuotation);
+
 
 
 /* GET Cargar pagina de escaleras de administrador */

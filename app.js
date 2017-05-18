@@ -15,6 +15,7 @@ var index = require('./routes/index');
 var products = require('./routes/products');
 var stairs = require('./routes/stairs');
 var machinery = require('./routes/machinery');
+//var machineryCat = require('./routes/machineryCat');
 var measurer = require('./routes/measurer');
 var appData = require('./routes/data');
 

@@ -7,8 +7,8 @@ var Schema = mongoose.Schema;
 // create a schema
 var stairSchema = new Schema({
     form:{ type: String, required: true},
-    accessDir : { type: String, required: true},
-    exitDir: { type: String, required: true},
+    accessDir : { type: String, required: true, default:"N"},
+    exitDir: { type: String, required: true, default:"N"},
     height: { type: Number, required: true },
     width: { type: Number, required: true },
     len:{ type: Number, required: true }

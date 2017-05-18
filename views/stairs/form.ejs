@@ -49,24 +49,46 @@
     </div>
     <div class="row">
         <div>
-            <form action="/" method="post"  class="form-group" onsubmit="return esValido(this)">
+            <form action="/stairs/new-quotation" method="post"  class="form-group" onsubmit="return esValido(this)">
                 <div class="tab-content">
                     <div class="tab-pane active" role="tabpanel" id="step1">
-                        <div >
-                            <label for="material">Material:</label>
-                            <select class="form-control" name="material" >
-                                <option value="1">Madera</option>
-                                <option value="2">Metal</option>
-                                <option value="3">Recina</option>
+                        <div class="form-group">
+                            <label for="forma">Forma de la escalera:</label>
+                            <select name="form" id="formId" class="form-control" >
+                                <option value="L">En L</option>
+                                <option value="U">En U</option>
+                                <option value="R">Recta</option>
                             </select>
                         </div>
+                        <div id="formCondition">
+                            <div class="form-group">
+                                <label for="accessDir">Direccion de entrada:</label>
+                                <label class="radio-inline"><input type="radio" name="accessDir" value="D"><i class="glyphicon glyphicon-arrow-up"> Derecha</i></label>
+                                <label class="radio-inline"><input type="radio" name="accessDir" value="I"><i class="glyphicon glyphicon-arrow-down"> Izquierda</i></label>
+                            </div>
+                            <div class="form-group">
+                                <label for="exitDir">Orientacion de Salida:</label>
+                                <label class="radio-inline"><input type="radio" name="exitDir" value="D"><i class="glyphicon glyphicon-arrow-up"> Derecha</i></label>
+                                <label class="radio-inline"><input type="radio" name="exitDir" value="I"><i class="glyphicon glyphicon-arrow-down"> Izquierda</i></label>
+                            </div>
+                        </div>
+                        <div class="alert alert-danger" role="alert" id="valido2" style="display:none;">
+                            <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+                            <span class="sr-only">Error:</span>
+                            <p><span id="v2"></span></p>
+                        </div>
+                        <div>
+                            <button type="button" class="btn btn-primary next-step">Siguiente</button>
+                        </div>
+                    </div>
+                    <div class="tab-pane" role="tabpanel" id="step2">
                         <div class="form-group">
                             <label for="largo">Largo en metros:</label>
-                            <input type="number" name="len" placeholder="min: 0.5 ; max: 1.5" id="largo" class="form-control" required>
+                            <input type="number" name="len" placeholder="min: 0.5 ; max: 1.5"  id="largo" class="form-control" required>
                         </div>
                         <div class="form-group">
                             <label for="ancho">Anchura en metros:</label>
-                            <input type="number" name="width" placeholder="min: 0.5 ; max: 2.5" id="ancho" class="form-control" required>
+                            <input type="number" name="width" placeholder="min: 0.5 ; max: 2.5"  id="ancho" class="form-control" required>
                         </div>
                         <div class="form-group">
                             <label for="alto">Altura en metros:</label>
@@ -75,77 +97,41 @@
                         <div class="alert alert-danger" role="alert" id="valido1" style="display:none;">
                             <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
                             <span class="sr-only">Error:</span>
-                            <p><span id="v1"  style="position:absolute;top:25%"></span></p>
+                            <p><span id="v1"></span></p>
+                        </div>
+                        <div class="error1 disabled">
+                            <p class="alert-danger">
+                                No se puede cubrir esa altura con el ancho proporcionado
+                            </p>
+                        </div>
+                        <div class="error2 disabled">
+                            <p class="alert-danger">
+                                No se puede cubrir esa altura con el ancho proporcionado
+                            </p>
                         </div>
                         <div>
-                            <button type="button" class="btn btn-primary next-step">Siguiente</button>
+                            <button type="button" class="btn btn-primary next-stepData">Siguiente</button>
                         </div>
-                    </div>
-                    <div class="tab-pane" role="tabpanel" id="step2">
-                        <div class="form-group">
-                            <label for="numeroEscalones">Numero De Escalones:</label>
-                            <input type="text" name="numeroEscalones" placeholder="N°Escalones" id="escalones" class="form-control" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="accessDir">Orientacion de Entrada:</label>
-                            <select name="accessDir" class="form-control">
-                                <option value="N">Norte</option>
-                                <option value="S">Sur</option>
-                                <option value="E">Este</option>
-                                <option value="O">Oeste</option>
-                            </select>
-                        </div>
-                        <div class="form-group">
-                            <label for="exitDir">Orientacion de Salida:</label>
-                            <select name="exitDir"  class="form-control">
-                                <option value="N">Norte </option>
-                                <option value="S">Sur</option>
-                                <option value="E">este</option>
-                                <option value="O">oeste</option>
-                            </select>
-                        </div>
-                        <div class="form-group">
-                            <label for="forma">Forma de la escalera:</label>
-                            <select name="forma" class="form-control" >
-                                <option value="L">En L</option>
-                                <option value="U">En U</option>
-                                <option value="E">En espiral</option>
-                                <option value="R">Recta</option>
-                            </select>
-                        </div>
-                        <div class="alert alert-danger" role="alert" id="valido2" style="display:none;position:absolute;top:70%;height:2%;width:100%;">
-                            <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true" style="position:absolute;top:35%"></span>
-                            <span class="sr-only">Error:</span>
-                            <p><span id="v2" style="position:absolute;top:25%"></span></p>
-                        </div>
-                        <div>
-                            <button type="button" class="btn btn-primary next-step">Siguiente</button>
-                        </div>
+
                     </div>
                     <div class="tab-pane" role="tabpanel" id="step3">
                         <div class="form-group">
                             <label for="name">Nombre completo:</label>
-                            <input type="text" name="nombre" placeholder="Nombre" id="nombre" class="form-control" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="lastname">Apellidos:</label>
-                            <input type="text" name="apellido" placeholder="Apellido" id="apellido" class="form-control" required>
+                            <input type="text" name="clientName" placeholder="Nombre" id="nombre" class="form-control" required>
                         </div>
                         <div class="form-group">
                             <label for="email">Email:</label>
-                            <input type="text" name="email" placeholder="Email" id="email" class="form-control" pattern="^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$" required>
+                            <input type="email" name="clientEmail" placeholder="Email" id="email" class="form-control" required>
                         </div>
                         <div class="form-group">
                             <label for="phone">Numero De celular:</label>
-                            <input type="text" name="celular" placeholder="N°Celular" id="celular" class="form-control" required>
+                            <input type="text" name="clientPhone" placeholder="N°Celular" id="celular" class="form-control" required>
                         </div>
                         <div>
                             <input type="submit" value="Validar" class="btn btn-info" style="width:100%;background-color: #DC8B1A">
                         </div>
-                        <div class="alert alert-danger" role="alert" id="valido3" style="display:none;position:absolute;top:75%;height:2%;width:100%;">
-                            <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true" style="position:absolute;top:35%"></span>
-                            <span class="sr-only">Error:</span>
-                            <p><span id="v3" style="position:absolute;top:25%"></span></p>
+                        <div class="alert alert-danger" role="alert" id="valido3" style="display:none">
+                            <i class="glyphicon glyphicon-exclamation-sign" id="v3"></i>
                         </div>
                     </div>
                 </div>

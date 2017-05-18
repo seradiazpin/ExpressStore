@@ -5,11 +5,14 @@ var express = require('express');
 var router = express.Router();
 var bodyParser = require("body-parser");
 var jsonParser = bodyParser.json();
+var officeResponce = require("./Office/quickstart");
+
 
 /* Importar esquemas de la base de datos*/
 var Stair = require('../database/schemas/stair');
 var Material = require('../database/schemas/material');
 var Provider = require('../database/schemas/provider');
+var Quotation = require('../database/schemas/quotation');
 
 
 /* Metodo para crear y guardar una escalera*/
@@ -22,26 +25,44 @@ var createStair = function (request, response) {
     });
     response.redirect('/stairs/admin');
 };
-var createStairUSER = function (request, response) {
+
+var createStairQuotation = function (request, response) {
     var data = request.body|| {};
-    var stair = new Stair(data);
+
+    var stairData = {
+        form:data.form,
+        accessDir : data.accessDir,
+        exitDir: data.exitDir,
+        height: data.heigth,
+        width: data.width,
+        len:data.len
+    };
+
+
+    var stair = new Stair(stairData);
+
     stair.save(function(err) {
         if (err) throw err;
         console.log('Stair saved successfully!');
     });
-    response.redirect('/stairs');
-};
-
-var createStair = function (request, response) {
-    var data = request.body|| {};
-    var stair = new Stair(data);
-    stair.save(function(err) {
+    console.log(stair.id);
+    var userData= {
+        complete:false,
+        itemType:0,
+        item:stair.id,
+        clientEmail:data.clientEmail,
+        clientPhone:data.clientPhone,
+        clientName:data.clientName
+    };
+    console.log(userData);
+    var quotation = new Quotation(userData);
+    quotation.save(function(err) {
         if (err) throw err;
-        console.log('Stair saved successfully!');
+        console.log('Quotation saved successfully!');
     });
-    response.redirect('/stairs/admin');
+    officeResponce.sendResponce();
+    response.redirect('/stairs/');
 };
-
 
 /* Metodo para crear y guardar un material*/
 var createMaterial = function (request, response) {
@@ -79,10 +100,7 @@ var deleteStair = function (request, response) {
 var updateStair = function (request, response) {
     console.log(request.params.stairId);
     var data = request.body|| {};
-    Stair.findByIdAndUpdate(request.params.stairId, { $set: data}, { new: true }, function (err, stair) {
-        if (err) throw err;
-        response.redirect('/stairs/admin');
-    });
+
 };
 
 router.get('/',function (request, response) {
@@ -111,7 +129,7 @@ router.post('/new-stair',jsonParser,createStair);
 router.post('/update-stair/:stairId',jsonParser,updateStair);
 router.post('/new-material',jsonParser,createMaterial);
 router.post('/new-provider',jsonParser,createProvider);
-
+router.post('/new-quotation',jsonParser,createStairQuotation);
 
 /* GET Cargar pagina de escaleras de administrador */
 router.get('/admin', function(req, res, next) {
@@ -128,7 +146,6 @@ router.get('/admin', function(req, res, next) {
     });
 
 });
-
 
 router.get('/form', function(req, res, next) {
     res.render('stairs/form');
