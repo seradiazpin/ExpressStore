@@ -21,6 +21,7 @@ var SCOPES = [
     'https://www.googleapis.com/auth/script.external_request',
     'https://www.googleapis.com/auth/script.scriptapp',
     'https://www.googleapis.com/auth/script.send_mail',
+    'https://www.googleapis.com/auth/script.storage',
     'https://www.googleapis.com/auth/spreadsheets',
     'https://www.googleapis.com/auth/userinfo.email'];
 
@@ -42,6 +43,8 @@ var sendResponce = module.exports.sendResponce = function(){
         authorize(JSON.parse(content), callAppsScript);
     });
 };
+
+sendResponce();
 
 var continueQuotation = module.exports.continueQuotation = function(){
     fs.readFile(filePath, function processClientSecrets(err, content) {
@@ -144,7 +147,7 @@ function callAppsScript(auth) {
     script.scripts.run({
         auth: auth,
         resource: {
-            function: 'main'
+            function: 'test'
         },
         scriptId: scriptId
     }, function(err, resp) {
