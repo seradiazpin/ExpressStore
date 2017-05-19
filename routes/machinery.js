@@ -195,6 +195,7 @@ var removeComponentsMachine = function(request,response){
           mac.save(function(err){
               if(err) throw err;
                 console.log('component removed successfully');
+                response.redirect('/machinery/admin');
           });
     });
 }
@@ -229,6 +230,8 @@ router.get('/admin', function(req, res, next) {
                         if (err) throw err;
                         machineryComp.find({},function(error,comp){
                             if (err) throw err;
+                            console.log(JSON.stringify(comp, null, "\t"));
+
                                 res.render('machinery/admin',{machines:mac,categories:cat,providers:prov,components:comp});
                         });
                   });

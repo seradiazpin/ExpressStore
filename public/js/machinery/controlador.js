@@ -75,7 +75,7 @@ function modiComponente(idSelec,action){
     call.done(function(data){
 
       console.log('done successfully');
-
+      location.reload();
         //console.log(Object.keys(data));
     });
 
