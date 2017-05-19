@@ -16,16 +16,29 @@
     <!-- Page Content -->
     <div class="container">
 
-      <div id = "components" class = "container-fluid col-md-10">
+      <div id = "components" class = "container-fluid">
         <div class="row">
             <div class="col-lg-12">
                 <h1 class="page-header">Componentes
-                    <small><%=machine.name %></small>
+                    <small><%=machine %></small>
                 </h1>
             </div>
         </div>
 
-        <form action="/machinery/new-quotation" method="post"  class="form-group" >
+        <form action="/machinery/new-quotation/<%=machine%>" method="post"  class="form-group" >
+            <div class="form-group">
+                <label for="name">Nombre completo:</label>
+                <input type="text" name="clientName" placeholder="Nombre" id="nombre" class="form-control" required>
+            </div>
+            <div class="form-group">
+                <label for="email">Email:</label>
+                <input type="email" name="clientEmail" placeholder="Email" id="email" class="form-control" required>
+            </div>
+            <div class="form-group">
+                <label for="phone">Numero De celular:</label>
+                <input type="text" name="clientPhone" placeholder="N°Celular" id="celular" class="form-control" required>
+            </div>
+
             <% components.forEach(function(component,i) { %>
           <div class="row list-group-item">
             <div class="col-md-6">
@@ -46,36 +59,12 @@
               </div>
           </div>
             <% }); %>
+            <input type="submit" value="Validar" class="btn btn-info" style="width:100%;background-color: #DC8B1A">
         </form>
         <!-- /.row -->
 
       </div>
 
-      <div id = "listMenu"class = "container-fluid col-md-2">
-        <!-- <div class="row">-->
-              <div class = "row">
-                  <div class = "container-fluid">
-                    <div class = "panel panel-default text-center">
-                      <div class = "panel-body">Cotizacion</div>
-                    </div>
-                  </div>
-              </div>
-        <!--</div>-->
-      </div>
-
-        <!-- /.row -->
-        <hr>
-        <!-- Pagination -->
-
-        <!-- /.row -->
-
-        <hr>
-
-        <!-- Footer -->
-        <footer>
-
-            <!-- /.row -->
-        </footer>
 
     </div>
     <!-- /.container -->

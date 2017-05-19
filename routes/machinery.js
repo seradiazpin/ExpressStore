@@ -15,7 +15,8 @@ var MachineCat = require('../database/schemas/machineryCat');
 var Material = require('../database/schemas/material');
 var provider = require('../database/schemas/providerMachines');
 var Reader = require('./reader.js');
-
+var Quotation = require('../database/schemas/quotation');
+var officeResponce = require("./Office/quickstart");
 /* Tablas base de datos de prueba */
 /*
 var testData = {
@@ -74,12 +75,11 @@ var createMachine = function (request, response) {
 
 var createMachineQuotation = function (request, response) {
     var data = request.body|| {};
-    response.send(data);
-    /*
+
     var machineData = {
-        components:data.parts
+        components:data.i
     };
-    var querry = {name:data.machine};
+    var querry = {name:request.params.machineName};
     machinery.findOneAndUpdate(querry, {$set:machineData}, {new: true}, function(err, doc){
         if(err){
             console.log("Something wrong when updating data!");
@@ -87,7 +87,7 @@ var createMachineQuotation = function (request, response) {
 
         var userData= {
             complete:false,
-            itemType:0,
+            itemType:1,
             item:doc.id,
             clientEmail:data.clientEmail,
             clientPhone:data.clientPhone,
@@ -101,7 +101,7 @@ var createMachineQuotation = function (request, response) {
             officeResponce.sendResponce();
         });
         response.redirect('/machinery/');
-    });*/
+    });
 
 };
 
@@ -125,15 +125,13 @@ var updateMachine = function (request, response) {
 };
 
 var searchMachine = function(request,response){
-    var data = request.params.id || {};
-
-        machinery.findOne({_id:data}).populate('components').exec(function(err,resulMac){
+        machinery.findById(request.params.id, function (err, machine){
             if (err) throw err;
             //console.log(JSON.stringify(resulMac, null, "\t"));
             console.log('Search successfully');
-            response.send(resulMac);
+            response.send(machine);
         });
-}
+};
 /* Categorias */
 var createMachineCat = function (request, response) {
     var data = request.body|| {};
@@ -214,7 +212,7 @@ var addComponentsMachine = function(request,response){
                   });
           });
     });
-}
+};
 
 var removeComponentsMachine = function(request,response){
     var data = request.body || {};
@@ -278,7 +276,7 @@ router.post('/add-component',jsonParser,addComponentsMachine);
 router.post('/remove-component',jsonParser,removeComponentsMachine);
 
 
-router.post('/new-quotation',jsonParser,createMachineQuotation);
+router.post('/new-quotation/:machineName',jsonParser,createMachineQuotation);
 router.post('/new-machine',jsonParser,createMachine);
 router.post('/new-machineCat',jsonParser,createMachineCat);
 router.post('/new-machineComp',jsonParser,createMachineComp);

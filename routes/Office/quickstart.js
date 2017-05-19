@@ -44,7 +44,6 @@ var sendResponce = module.exports.sendResponce = function(){
     });
 };
 
-sendResponce();
 
 var continueQuotation = module.exports.continueQuotation = function(){
     fs.readFile(filePath, function processClientSecrets(err, content) {
