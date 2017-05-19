@@ -11,6 +11,6 @@ var providerSchema = new Schema({
     resuplyTime: { type: Number, required: true}
 });
 
-var Provider = mongoose.model('Provider', providerSchema);
+var provider = mongoose.model('provider', providerSchema);
 
-module.exports = Provider;
+module.exports = provider;
