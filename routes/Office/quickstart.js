@@ -44,7 +44,16 @@ var sendResponce = module.exports.sendResponce = function(){
 };
 
 var continueQuotation = module.exports.continueQuotation = function(){
-    console.log("Continue");
+    fs.readFile(filePath, function processClientSecrets(err, content) {
+        if (err) {
+            console.log('Error loading client secret file: ' + err);
+            return;
+        }
+        // Authorize a client with the loaded credentials, then call the
+        // Google Apps Script Execution API.
+        console.log(JSON.parse(content));
+        authorize(JSON.parse(content), callAppsScript2);
+    });
 };
 /**
  * Create an OAuth2 client with the given credentials, and then execute the
@@ -135,7 +144,54 @@ function callAppsScript(auth) {
     script.scripts.run({
         auth: auth,
         resource: {
-            function: 'getDB'
+            function: 'main'
+        },
+        scriptId: scriptId
+    }, function(err, resp) {
+        if (err) {
+            // The API encountered a problem before the script started executing.
+            console.log('The API returned an error: ' + err);
+            return;
+        }
+        if (resp.error) {
+            // The API executed, but the script returned an error.
+
+            // Extract the first (and only) set of error details. The values of this
+            // object are the script's 'errorMessage' and 'errorType', and an array
+            // of stack trace elements.
+            var error = resp.error.details[0];
+            console.log('Script error message: ' + error.errorMessage);
+            console.log('Script error stacktrace:');
+
+            if (error.scriptStackTraceElements) {
+                // There may not be a stacktrace if the script didn't start executing.
+                for (var i = 0; i < error.scriptStackTraceElements.length; i++) {
+                    var trace = error.scriptStackTraceElements[i];
+                    console.log('\t%s: %s', trace.function, trace.lineNumber);
+                }
+            }
+        } else {
+            // The structure of the result will depend upon what the Apps Script
+            // function returns. Here, the function returns an Apps Script Object
+            // with String keys and values, and so the result is treated as a
+            // Node.js object (folderSet).
+            var folderSet = resp.response.result;
+            console.log(resp.response);
+        }
+
+    });
+}
+
+
+function callAppsScript2(auth) {
+    var scriptId = 'MUuPJ8FGShbQxCrCBI9ZKxZbyaOoD42jf';
+    var script = google.script('v1');
+
+    // Make the API request. The request object is included here as 'resource'.
+    script.scripts.run({
+        auth: auth,
+        resource: {
+            function: 'main_Quotation'
         },
         scriptId: scriptId
     }, function(err, resp) {
