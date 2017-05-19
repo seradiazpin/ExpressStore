@@ -131,7 +131,6 @@ router.post('/new-provider',jsonParser,createProvider);
 router.post('/new-quotation',jsonParser,createMeasurerQuotation);
 
 
-
 /* GET Cargar pagina de escaleras de administrador */
 router.get('/admin', function(req, res, next) {
     Measurer.find({}, function(err, sta) {
@@ -143,9 +142,7 @@ router.get('/admin', function(req, res, next) {
                 res.render('measurers/admin', {measurers:sta, materials:mat, providers:pro});
             });
         });
-
     });
-
 });
 
 
