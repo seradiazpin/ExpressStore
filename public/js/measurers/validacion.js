@@ -4,30 +4,27 @@ function esValido(formulario){
         document.getElementById("v"+i).innerHTML = "";
     }
     //var largo,ancho,alto,escalones,nombre,apellido,email,celular,validador;
-    var diametro, caudal, alto, ancho, medidores, nombre, email, celular;
-
-    diametro = parseFloat(formulario["out_diameter"].value);
-    caudal = parseFloat(formulario["flow"].value);
+    var alto, medidores, nombre, email, celular;
+    
     alto = parseFloat(formulario["wall_heigth"].value);
-    ancho = parseFloat(formulario["wall_width"].value);
     medidores = formulario["measurer_number"].value;
     nombre = formulario["name"].value;
     email = formulario["email"].value;
     celular = formulario["phone"].value;
 
-    if(!isNumber(medidores) || !isNumber(caudal) || !isNumber(ancho) || !isNumber(alto)){
+    if(!isNumber(medidores) || !isNumber(alto)){
         validador = document.getElementById("valido1");
         validador.style.display = "block";
         validador = document.getElementById("v1");
-        validador.innerHTML = validador.innerHTML + "___ Error en alguno de los datos: Diametro, caudal, alto,largo";
+        validador.innerHTML = validador.innerHTML + "___ Error en alguno de los datos: Alto, numero de medidores";
         huboError();
         return false;
     }
-    if(!estaEnRango(medidores, caudal, ancho, alto)){
+    if(!estaEnRango(medidores, alto)){
         validador = document.getElementById("valido1");
         validador.style.display = "block";
         validador = document.getElementById("v1");
-        validador.innerHTML = validador.innerHTML + "___ Error el diametro, caudal, ancho o alto no estan en el rango indicado";
+        validador.innerHTML = validador.innerHTML + "___ Error el numero de medidores o el alto no estan en el rango indicado";
         huboError();
         return false;
     }
@@ -72,7 +69,7 @@ function huboError(){
     validador.innerHTML = validador.innerHTML + "___ Error en el formulario";
 }
 function estaEnRango(medidores, caudal, ancho, alto){
-    if(alto >= 1 && alto <= 2.2 && ancho >= 0.6 && ancho <= 5 && medidores >= 2 && medidores <= 20 && caudal >= 0.5 && caudal <= 20)
+    if(alto >= 1 && alto <= 2 && medidores >= 1 && medidores <= 100 )
         return true;
     return false;
 }
