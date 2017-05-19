@@ -74,7 +74,8 @@ var createMachine = function (request, response) {
 
 var createMachineQuotation = function (request, response) {
     var data = request.body|| {};
-
+    response.send(data);
+    /*
     var machineData = {
         components:data.parts
     };
@@ -100,7 +101,7 @@ var createMachineQuotation = function (request, response) {
             officeResponce.sendResponce();
         });
         response.redirect('/machinery/');
-    });
+    });*/
 
 };
 
