@@ -2,6 +2,7 @@
 <html>
 <head>
     <% include ../partials/head %>
+
 </head>
 
 <body>
@@ -23,6 +24,7 @@
         <li class="active"><a data-toggle="tab" href="#menu1">Maquinaria</a></li>
         <li><a data-toggle="tab" href="#menu2">Categorias</a></li>
         <li><a data-toggle="tab" href="#menu3">Proveedores</a></li>
+        <li><a data-toggle="tab" href="#menu4">Componentes</a></li>
     </ul>
 
     <div class="tab-content">
@@ -33,6 +35,7 @@
             <table class="table table-striped">
                 <thead>
                 <tr>
+                    <th>Nombre</th>
                     <th>Tipo</th>
                     <th>Peso</th>
                     <th>Capacidad</th>
@@ -44,14 +47,16 @@
                     <th>Longitud</th>
                     <th>Ancho</th>
                     <th>Alto</th>
-                    <th>Long Brazos</th>
-                    <th>Horas trabajo</th>
+                    <th>Horas Trabajo</th>
+                    <th>Img</th>
+                    <th>Sound</th>
                 </tr>
                 </thead>
 
                 <tbody>
                 <% machines.forEach(function(machine) { %>
                 <tr>
+                        <td><%= machine.name %></td>
                         <td><%= machine.type %></td>
                         <td><%= machine.weight %></td>
                         <td><%= machine.capacity %></td>
@@ -64,11 +69,21 @@
                         <td><%= machine.width %></td>
                         <td><%= machine.height %></td>
                         <td><%= machine.workHours %></td>
-                        <td><a  class="btn btn-info" href="/machinery/edit-machinery/<%= machine.id%>">Editar</a></td>
+                        <td><%= machine.img %></td>
+                        <td><%= machine.sound %></td>
+                        <td><a  class="btn btn-info" href="/machinery/edit-machinery/<%= machine.id %>">Editar</a></td>
+                    <!--    <form method = 'POST' action = "/machinery/search-machine">
+                            <input class="btn btn-info" name = "cont" value = "El mensaje">
+                            <input class="btn btn-info" type = "submit" value = "info POST">
+                        </form> -->
+
+
                         <td><a class="btn btn-danger" href="/machinery/delete/<%= machine.id%>">Borrar</a></td>
+                      <!--  <td><a class="btn btn-warning" href="/machinery/search-machine/<%= machine.id%>">GET</a></td> -->
                 </tr>
                 <% }); %>
                 <tr>
+                    <td><input name="name" class="form-control" type="text" required></td>
                     <td><select name="type" class="form-control" step="0.01"required>
                             <% categories.forEach(function(category) { %>
                                 <option value="<%=category.name %>"><%=category.name %></option>
@@ -92,16 +107,18 @@
                     <td><input name="width" class="form-control"> </input> </td>
                     <td><input name="height" class="form-control"> </input> </td>
                     <td><input name="workHours" class="form-control"> </input> </td>
+                    <td><input name="img" class="form-control"> </input> </td>
+                    <td><input name="sound" class="form-control"> </input> </td>
 
-                    <datalist id="water">
-                      <option value="Si">
-                      <option value="No">
-                  </datalist>
                 </tr>
                 </tbody>
             </table>
+
             <input class="form-control btn btn-success" type="submit">
             </form>
+            <!-- Datos para agregar componente -->
+
+
         </div>
 
         <div  id="menu2"class="tab-pane fade">
@@ -118,7 +135,7 @@
                         <tr>
                             <td><%= category.name %></td>
                             <td><a  class="btn btn-info" href="/machinery/edit-machineryCat/<%= category.id%>">Editar</a></td>
-                            <td><a class="btn btn-danger" href="/machinery/deleteCat/<%= category.id%>">Borrar</a></td>
+                            <td><a class="btn btn-danger" href="/machinery/delete-category/<%= category.id%>">Borrar</a></td>
                         </tr>
                       <% }); %>
                         <tr>
@@ -143,7 +160,7 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <% providers.forEach(function(provider) {%>
+                        <% providers.forEach(function(provider) { %>
                         <tr>
                             <td> <%=provider.name %> </td>
                             <td> <%=provider.location %> </td>
@@ -151,7 +168,7 @@
                             <td> <%=provider.phone %> </td>
                             <td> <%=provider.resuplyTime %> </td>
                             <td><a class="btn btn-info" href="/machinery/edit-machineryCat/<%= provider.id%>">Editar</a></td>
-                            <td><a class="btn btn-danger" href="/machinery/deleteCat/<%= provider.id%>">Borrar</a></td>
+                            <td><a class="btn btn-danger" href="/machinery/delete-provider/<%= provider.id%>">Borrar</a></td>
                         </tr>
                         <% }); %>
                         <tr>
@@ -166,11 +183,48 @@
                 <input class="form-control btn btn-success" type="submit">
             </form>
         </div>
+        <div  id="menu4"class="tab-pane fade">
+            <h3>Componentes</h3>
+            <form class="form-group" method="post" action="/machinery/new-machineComp">
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>Nombre Componente</th>
+                            <th>Referencia</th>
+                            <th>Ancho</th>
+                            <th>precio</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                      <% components.forEach(function(component) { %>
+                        <tr>
+                            <td><%= component.name %></td>
+                            <td><%= component.reference %></td>
+                            <td><%= component.width %></td>
+                            <td><%= component.price %></td>
+                            <td><a  class="btn btn-info" href="/machinery/edit-machineryComp/<%= component.id%>">Editar</a></td>
+                            <td><a class="btn btn-danger" href="/machinery/delete-component/<%= component.id%>">Borrar</a></td>
+                        </tr>
+                      <% }); %>
+                        <tr>
+                            <td><input name="name" class="form-control" type="text" required></td>
+                            <td><input name="reference" class="form-control" type="text" required></td>
+                            <td><input name="width" class="form-control" type="number" required></td>
+                            <td><input name="price" class="form-control" type="number" required></td>
+                        </tr>
+                    </tbody>
+                </table>
+                <input class="form-control btn btn-success" type="submit">
+            </form>
+        </div>
     </div>
 </div>
 
 <!-- end Admin view-->
 <% include ../partials/footer %>
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.1/jquery.min.js"></script>
+<script src="/js/machinery/vista.js" async = 'false'></script>
+<script src="/js/machinery/controlador.js"></script>
 
 </body>
 

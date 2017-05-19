@@ -9,15 +9,11 @@ var productSchema = new Schema({
     calification: { type: Number, min: 0, max: 5}
 });
 
-
 productSchema.methods.case = function() {
     // add some stuff to the users name
     this.name = this.name + ' Product';
     return this.name;
 };
 
-
 var Product = mongoose.model('Product', productSchema);
-
-
 module.exports = Product;

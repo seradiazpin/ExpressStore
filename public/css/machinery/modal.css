@@ -1,0 +1,71 @@
+#myCarousel {
+   /*width:60%;*/
+
+
+}
+
+.modal-content{
+  border-radius: 0px;
+}
+
+.modal-dialog{
+  width:95%;
+}
+
+.modal-header{
+  background-color:  #2471a3;/*color azul */
+  color:#FFC169;
+}
+.panel-heading{
+  background-color:#FFC169;
+}
+.well{
+      border-top = 5px;
+      background-color: #2471a3;
+}
+.itemData {
+
+
+  /*border-style: inset;*/
+  border-left:1px;
+  padding: 0px;
+  /*margin:15px;*/
+  box-shadow: rgb(20,20,20)  2px 2px 8px;
+background-color:  #FFC169;
+border-radius: 0px;
+}
+
+.modalFoot{
+  padding: 0px;
+  margin-bottom: 0px;
+}
+
+div.linkers{
+    padding:0;
+    position:relative;
+    background-color: black;
+
+    margin-left: 20px;
+}
+
+div.linkers:hover{
+    border-bottom: trans;
+}
+
+div.linkers img{
+  width: 100%;
+}
+
+div.linkers h3{
+
+}
+#downModalContainer{
+  width:95%;
+  margin-top:20px;
+}
+
+#test{
+  background-color: red;
+  /*display:inline-block;*/
+  margin:auto;
+}
