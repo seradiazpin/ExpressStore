@@ -70,6 +70,13 @@ router.get('/quotations', function(req, res, next) {
     });
 });
 
+router.get('/machines', function(req, res, next) {
+    Machine.find({}, function (err, mat) {
+        if (err) throw err;
+        res.send(mat);
+    });
+});
+
 router.get('/materials/:matName', getMaterial);
 router.get('/providers/:provId', getProvider);
 router.get('/completeQuotation/:quotId', completeQuotation);

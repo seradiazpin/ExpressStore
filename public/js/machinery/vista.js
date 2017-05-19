@@ -18,7 +18,7 @@ var bufferComp="";
             $('#modWidth').text(maquina.width);
             $('#modHeight').text(maquina.height);
             $('#modWork').text(maquina.workHours);
-            console.log(maquina.img);
+
             $('#machinepic').attr("src",maquina.img);
             $('#linkerCatalogue').attr("href",maquina.catalogue);
             $('#linkerVideo').attr("href",maquina.video);
