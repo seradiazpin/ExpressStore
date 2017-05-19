@@ -12,7 +12,7 @@
 
       call.done(function(data){
         console.log('done successfully');
-          currentId = data._id;
+          currentId = data.name;
           currentObj = data;
 
           console.log(JSON.stringify(data, null, "\t"));

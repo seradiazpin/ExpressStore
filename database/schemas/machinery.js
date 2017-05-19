@@ -29,11 +29,7 @@ var machinerySchema = new Schema({
     blueprint:{type:String,default:'#'},
     catalogue:{type:String,default:'#'},
     video:{type:String,default:"#"},
-
-    /*components: [{comp:{ type: Schema.Types.ObjectId, ref: 'machineryComp' },
-                  cant:{type:Number,default:1}}] bidimensional imposible hasta el momento*/
-    providers:[{type : Schema.ObjectId, ref: 'provider'}],
-    components:[{type : Schema.ObjectId, ref: 'machineryComp'}]
+    components:[]
 });
 
 var machinery = mongoose.model('machinery', machinerySchema);

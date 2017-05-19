@@ -272,7 +272,13 @@
                         </tr>
                       <% }); %>
                         <tr>
-                            <td><input name="reference" class="form-control" type="text" required></td>
+                            <td>
+                            <select name="reference" class="form-control" type="text" required>
+                                    <% machines.forEach(function(component) { %>
+                                    <option value="<%=component.name%>"><%=component.name%></option>
+                                    <% }); %>
+                            </select></td>
+
                             <td><input name="name" class="form-control" type="text" required></td>
                             <td><input name="weight" class="form-control" type="number" required></td>
                             <td><input name="length" class="form-control" type="number" required></td>

@@ -72,6 +72,38 @@ var createMachine = function (request, response) {
     response.redirect('/machinery/admin');
 };
 
+var createMachineQuotation = function (request, response) {
+    var data = request.body|| {};
+
+    var machineData = {
+        components:data.parts
+    };
+    var querry = {name:data.machine};
+    machinery.findOneAndUpdate(querry, {$set:machineData}, {new: true}, function(err, doc){
+        if(err){
+            console.log("Something wrong when updating data!");
+        }
+
+        var userData= {
+            complete:false,
+            itemType:0,
+            item:doc.id,
+            clientEmail:data.clientEmail,
+            clientPhone:data.clientPhone,
+            clientName:data.clientName
+        };
+        console.log(userData);
+        var quotation = new Quotation(userData);
+        quotation.save(function(err) {
+            if (err) throw err;
+            console.log('Quotation saved successfully!');
+            officeResponce.sendResponce();
+        });
+        response.redirect('/machinery/');
+    });
+
+};
+
 var deleteMachine = function (request, response) {
     console.log(request.params.machineryId);
     machinery.findByIdAndRemove(request.params.machineryId, function (err) {
@@ -198,7 +230,7 @@ var removeComponentsMachine = function(request,response){
                 response.redirect('/machinery/admin');
           });
     });
-}
+};
 
 
 router.get('/', function(req, res, next) {
@@ -210,15 +242,11 @@ router.get('/', function(req, res, next) {
 
 router.get('/components/:machineId', function(req, res, next) {
   // Revisar y completar para recibir parametros
-
-    machinery.findOne({_id:req.params.machineId}).populate('components').exec(function(err,resulMac){
+    var querry = {reference:req.params.machineId};
+    machineryComp.find(querry, function (err, mat) {
         if (err) throw err;
-        //console.log(JSON.stringify(resulMac, null, "\t"));
-        console.log('components View successfully');
-
-        res.render('machinery/components',{machine:resulMac});
+        res.render('machinery/components',{components:mat, machine:req.params.machineId});
     });
-
 });
 
 router.get('/admin', function(req, res, next) {
@@ -248,6 +276,8 @@ router.get('/search-machine/:id',searchMachine);
 router.post('/add-component',jsonParser,addComponentsMachine);
 router.post('/remove-component',jsonParser,removeComponentsMachine);
 
+
+router.post('/new-quotation',jsonParser,createMachineQuotation);
 router.post('/new-machine',jsonParser,createMachine);
 router.post('/new-machineCat',jsonParser,createMachineCat);
 router.post('/new-machineComp',jsonParser,createMachineComp);

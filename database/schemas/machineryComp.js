@@ -3,7 +3,7 @@ var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
 var machineryCompSchema = new Schema({
-    reference:{type:String, required:true,unique:true},
+    reference:{type: String},
     name:{type:String, required:true},
     weight:{type:Number,required:true},
     length:{type:Number,required:true},

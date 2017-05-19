@@ -25,18 +25,28 @@
             </div>
         </div>
 
-        <div class="row">
-            <% machine.components.forEach(function(component) { %>
-            <div class="col-md-4 portfolio-item">
+        <form action="/machinery/new-quotation" method="post"  class="form-group" >
+            <% components.forEach(function(component,i) { %>
+          <div class="row list-group-item">
+            <div class="col-md-6">
                 <a href="<%=component.img%>">
-                    <img class="img-responsive" src="<%=component.img%>" alt="Not Avaliable">
+                    <img class="img-responsive" style="width: 200px;height: auto;" src="<%=component.img%>" alt="Not Avaliable">
                 </a>
-                <h3>
-                    <a><%=component.name%></a>
-                </h3>
+
             </div>
+              <div class="col-md-6">
+                      <p><b>Nombre : </b><%=component.name%></p>
+                      <p><b>Ancho : </b><%=component.width%></p>
+                      <p><b>Alto : </b><%=component.height%></p>
+                      <p><b>Peso : </b><%=component.width%></p>
+                      <p><b>Precio : </b><%=component.price%></p>
+                      <div class="checkbox">
+                          <label><input type="checkbox" name="i" value="<%=component.name%>">Agregar</label>
+                      </div>
+              </div>
+          </div>
             <% }); %>
-        </div>
+        </form>
         <!-- /.row -->
 
       </div>
