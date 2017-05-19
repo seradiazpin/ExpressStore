@@ -2,7 +2,9 @@
  * Created by usuario on 19/04/2017.
  */
 var mongoose = require('mongoose');
+//var deepPopulate = require('mongoose-deep-populate')(mongoose);
 var Schema = mongoose.Schema;
+
 
 // create a schema
 var machinerySchema = new Schema({
@@ -22,10 +24,16 @@ var machinerySchema = new Schema({
     height: { type: Number, required: true},
     workHours: { type: Number, required: true},
     ammount: { type: Number, default:0},
-    img: { type: String, default:null},
-    sound: { type: String, default:null},
-    components: [{comp:{ type: Schema.Types.ObjectId, ref: 'component' },
-                  cant:{type:Number,default:1}}]
+    img: { type: String, default:'#'},
+    sound: { type: String, default:'#'},
+    blueprint:{type:String,default:'#'},
+    catalogue:{type:String,default:'#'},
+    video:{type:String,default:"#"},
+
+    /*components: [{comp:{ type: Schema.Types.ObjectId, ref: 'machineryComp' },
+                  cant:{type:Number,default:1}}] bidimensional imposible hasta el momento*/
+    providers:[{type : Schema.ObjectId, ref: 'provider'}],
+    components:[{type : Schema.ObjectId, ref: 'machineryComp'}]
 });
 
 var machinery = mongoose.model('machinery', machinerySchema);
