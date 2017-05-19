@@ -42,7 +42,7 @@
               <a href = "<%= product.img %>" target = "_blank"> <img src = "<%= product.img %>" alt="not Found"></a>
                 <div class="caption">
                   <!--  onclick = "buscarMaquina('<%= product.id %>','search-machine')" -->
-                    <h4><a href="" data-toggle="modal" data-target="#caracModal" onclick = "buscarMaquina('<%= product.id %>','search-machine')">Maquinaria de tipo <%= product.type %></a>
+                    <h4><a href="" data-toggle="modal" data-target="#caracModal" onclick = "buscarMaquina('<%= product.id %>','search-machine','modal')">Maquinaria de tipo <%= product.type %></a>
                     </h4>
                     <div class = "media">
                         <iframe src="<%= product.sound %>&amp;auto_play=false&amp;hide_related=true&amp;show_comments=false&amp;show_user=false&amp;show_reposts=false&amp;show_artwork=false&amp;liking=false&amp;show_playcount=false&amp;visual=false" width="100%" height="80" scrolling="no" frameborder="no"></iframe>

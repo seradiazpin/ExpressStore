@@ -50,6 +50,9 @@
                     <th>Horas Trabajo</th>
                     <th>Img</th>
                     <th>Sound</th>
+                    <th>Plano</th>
+                    <th>Catalogo</th>
+                    <th>Video</th>
                 </tr>
                 </thead>
 
@@ -67,10 +70,13 @@
                         <td><%= machine.fuelCapacity %></td>
                         <td><%= machine.length %></td>
                         <td><%= machine.width %></td>
-                        <td><%= machine.height %></td>
+                        <td><%= machine.heighst %></td>
                         <td><%= machine.workHours %></td>
                         <td><%= machine.img %></td>
                         <td><%= machine.sound %></td>
+                        <td><%= machine.blueprint %></td>
+                        <td><%= machine.catalogue %></td>
+                        <td><%= machine.video %></td>
                         <td><a  class="btn btn-info" href="/machinery/edit-machinery/<%= machine.id %>">Editar</a></td>
                     <!--    <form method = 'POST' action = "/machinery/search-machine">
                             <input class="btn btn-info" name = "cont" value = "El mensaje">
@@ -79,6 +85,7 @@
 
 
                         <td><a class="btn btn-danger" href="/machinery/delete/<%= machine.id%>">Borrar</a></td>
+                        <td><a class="btn btn-danger" data-toggle = "collapse" data-target="#collapComp" onclick="buscarMaquina('<%= machine.id%>','search-machine','selector');" >Componentes</a></td>
                       <!--  <td><a class="btn btn-warning" href="/machinery/search-machine/<%= machine.id%>">GET</a></td> -->
                 </tr>
                 <% }); %>
@@ -109,7 +116,9 @@
                     <td><input name="workHours" class="form-control"> </input> </td>
                     <td><input name="img" class="form-control"> </input> </td>
                     <td><input name="sound" class="form-control"> </input> </td>
-
+                    <td><input name="blueprint" class="form-control"> </input> </td>
+                    <td><input name="catalogue" class="form-control"> </input> </td>
+                    <td><input name="video" class="form-control"> </input> </td>
                 </tr>
                 </tbody>
             </table>
@@ -117,7 +126,52 @@
             <input class="form-control btn btn-success" type="submit">
             </form>
             <!-- Datos para agregar componente -->
+            <div id = "collapComp" class = "collapse">
+                <table class = "table table-bordered">
+                    <thead>
+                        <tr>
+                          <th> Nombre</th>
+                          <th> Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td><select id = "selComp" name="waterCooling" class="form-control" step="0.01"required>
 
+                                                                                          </select>
+                        </td>
+                        <td>
+                            <button class = "btn btn-sucess" onclick="modiComponente($('#selComp').val(),'add')">Agregar</Button>
+                        </td>
+                      </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- Agregar Imagenes para el carrusel -->
+            <div id = "collapImg" class = "collapse">
+                <table class = "table table-bordered">
+                    <thead>
+                        <tr>
+                          <th>Link Imagen</th>
+                          <th> Accion</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td><select id = "selComp" name="waterCooling" class="form-control" step="0.01"required>
+                              <% components.forEach(function(component){ %>
+                                <option value="<%= component.id %>"><%= component.name %></option>
+                              <% }); %>
+                            </select>
+                        </td>
+                        <td>
+                            <button class = "btn btn-sucess" onclick="modiComponente($('#selComp').val(),'add')">Agregar</Button>
+                        </td>
+                      </tr>
+                    </tbody>
+                </table>
+            </div>
 
         </div>
 
@@ -189,28 +243,40 @@
                 <table class="table table-striped">
                     <thead>
                         <tr>
-                            <th>Nombre Componente</th>
                             <th>Referencia</th>
+                            <th>Nombre</th>
+                            <th>Peso</th>
+                            <th>Longitud</th>
                             <th>Ancho</th>
-                            <th>precio</th>
+                            <th>Alto</th>
+                            <th>Precio</th>
+                            <th>Img</th>
                         </tr>
                     </thead>
                     <tbody>
                       <% components.forEach(function(component) { %>
                         <tr>
-                            <td><%= component.name %></td>
                             <td><%= component.reference %></td>
+                            <td><%= component.name %></td>
+                            <td><%= component.weight %></td>
+                            <td><%= component.length %></td>
                             <td><%= component.width %></td>
+                            <td><%= component.height %></td>
                             <td><%= component.price %></td>
+                            <td><%= component.img %></td>
                             <td><a  class="btn btn-info" href="/machinery/edit-machineryComp/<%= component.id%>">Editar</a></td>
                             <td><a class="btn btn-danger" href="/machinery/delete-component/<%= component.id%>">Borrar</a></td>
                         </tr>
                       <% }); %>
                         <tr>
-                            <td><input name="name" class="form-control" type="text" required></td>
                             <td><input name="reference" class="form-control" type="text" required></td>
+                            <td><input name="name" class="form-control" type="text" required></td>
+                            <td><input name="weight" class="form-control" type="number" required></td>
+                            <td><input name="length" class="form-control" type="number" required></td>
                             <td><input name="width" class="form-control" type="number" required></td>
+                            <td><input name="height" class="form-control" type="number" required></td>
                             <td><input name="price" class="form-control" type="number" required></td>
+                            <td><input name="img" class="form-control" type="text" required></td>
                         </tr>
                     </tbody>
                 </table>

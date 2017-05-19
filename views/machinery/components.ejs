@@ -2,98 +2,91 @@
 <html lang="en">
 
 <head>
-      <% include ../partials/head %>
+
+    <% include ../partials/head %>
+    <!-- Custom CSS -->
+    <link href="css/machinery/componentsPage.css" rel="stylesheet">
 </head>
 
 <body>
-  <% include ../partials/header %>
+
     <!-- Navigation -->
-    <%= machine.type%>
+    <% include ../partials/header %>
+
     <!-- Page Content -->
     <div class="container">
 
+      <div id = "components" class = "container-fluid col-md-10">
         <div class="row">
-
             <div class="col-lg-12">
-                <h1 class="page-header">Thumbnail Gallery</h1>
-            </div>
-
-            <div class="col-lg-3 col-md-4 col-xs-6 thumb">
-                <a class="thumbnail" href="#">
-                    <img class="img-responsive" src="http://placehold.it/400x300" alt="">
-                </a>
-            </div>
-            <div class="col-lg-3 col-md-4 col-xs-6 thumb">
-                <a class="thumbnail" href="#">
-                    <img class="img-responsive" src="http://placehold.it/400x300" alt="">
-                </a>
-            </div>
-            <div class="col-lg-3 col-md-4 col-xs-6 thumb">
-                <a class="thumbnail" href="#">
-                    <img class="img-responsive" src="http://placehold.it/400x300" alt="">
-                </a>
-            </div>
-            <div class="col-lg-3 col-md-4 col-xs-6 thumb">
-                <a class="thumbnail" href="#">
-                    <img class="img-responsive" src="http://placehold.it/400x300" alt="">
-                </a>
-            </div>
-            <div class="col-lg-3 col-md-4 col-xs-6 thumb">
-                <a class="thumbnail" href="#">
-                    <img class="img-responsive" src="http://placehold.it/400x300" alt="">
-                </a>
-            </div>
-            <div class="col-lg-3 col-md-4 col-xs-6 thumb">
-                <a class="thumbnail" href="#">
-                    <img class="img-responsive" src="http://placehold.it/400x300" alt="">
-                </a>
-            </div>
-            <div class="col-lg-3 col-md-4 col-xs-6 thumb">
-                <a class="thumbnail" href="#">
-                    <img class="img-responsive" src="http://placehold.it/400x300" alt="">
-                </a>
-            </div>
-            <div class="col-lg-3 col-md-4 col-xs-6 thumb">
-                <a class="thumbnail" href="#">
-                    <img class="img-responsive" src="http://placehold.it/400x300" alt="">
-                </a>
-            </div>
-            <div class="col-lg-3 col-md-4 col-xs-6 thumb">
-                <a class="thumbnail" href="#">
-                    <img class="img-responsive" src="http://placehold.it/400x300" alt="">
-                </a>
-            </div>
-            <div class="col-lg-3 col-md-4 col-xs-6 thumb">
-                <a class="thumbnail" href="#">
-                    <img class="img-responsive" src="http://placehold.it/400x300" alt="">
-                </a>
-            </div>
-            <div class="col-lg-3 col-md-4 col-xs-6 thumb">
-                <a class="thumbnail" href="#">
-                    <img class="img-responsive" src="http://placehold.it/400x300" alt="">
-                </a>
-            </div>
-            <div class="col-lg-3 col-md-4 col-xs-6 thumb">
-                <a class="thumbnail" href="#">
-                    <img class="img-responsive" src="http://placehold.it/400x300" alt="">
-                </a>
+                <h1 class="page-header">Componentes
+                    <small><%=machine.name %></small>
+                </h1>
             </div>
         </div>
+
+        <div class="row">
+            <% machine.components.forEach(function(component) { %>
+            <div class="col-md-4 portfolio-item">
+                <a href="<%=component.img%>">
+                    <img class="img-responsive" src="<%=component.img%>" alt="Not Avaliable">
+                </a>
+                <h3>
+                    <a><%=component.name%></a>
+                </h3>
+            </div>
+            <% }); %>
+        </div>
+        <!-- /.row -->
+
+      </div>
+
+      <div id = "listMenu"class = "container-fluid col-md-2">
+        <!-- <div class="row">-->
+              <div class = "row">
+                  <div class = "container-fluid">
+                    <div class = "panel panel-default text-center">
+                      <div class = "panel-body">Cotizacion</div>
+                    </div>
+                  </div>
+              </div>
+              <div class = "row" style="background-color:black">
+
+                  <div class="media">
+                      <div class="media-left media-top">
+                          <img src="img_avatar1.png" class="media-object" style="width:60px">
+                      </div>
+                      <div class="media-body">
+                          <h4 class="media-heading">Media Top</h4>
+                              <p>Lorem ipsum...</p>
+                      </div>
+                </div>
+
+              </div>
+
+        <!--</div>-->
+      </div>
+
+        <!-- /.row -->
+        <hr>
+        <!-- Pagination -->
+
+        <!-- /.row -->
 
         <hr>
 
         <!-- Footer -->
         <footer>
-            <div class="row">
-                <div class="col-lg-12">
-                    <p>Copyright &copy; Your Website 2014</p>
-                </div>
-            </div>
+
+            <!-- /.row -->
         </footer>
 
     </div>
     <!-- /.container -->
+
+    <!-- jQuery -->
     <% include ../partials/footer %>
+
 </body>
 
 </html>
