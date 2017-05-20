@@ -29,6 +29,7 @@ var machinerySchema = new Schema({
     blueprint:{type:String,default:'#'},
     catalogue:{type:String,default:'#'},
     video:{type:String,default:"#"},
+    price:{type:Number,default:0},
     components:[]
 });
 

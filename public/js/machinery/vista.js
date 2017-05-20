@@ -5,7 +5,7 @@ var bufferComp="";
       pintarMaquina : function(maquina){
 
             $('#modName').text(maquina.name);
-            $('#modBrand').text(maquina.brand);
+            $('#modBrand').text(maquina.price);
             $('#modType').text(maquina.type);
             $('#modWeight').text(maquina.weight);
             $('#modCapacity').text(maquina.capacity);

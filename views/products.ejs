@@ -8,82 +8,99 @@
 
 <% include ./partials/header %>
 
+<!-- Header Carousel -->
+    <div id="myCarousel" class="carousel slide" data-ride="carousel">
+  <!-- Indicators -->
+  <ol class="carousel-indicators">
+    <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+    <li data-target="#myCarousel" data-slide-to="1"></li>
+    <li data-target="#myCarousel" data-slide-to="2"></li>
+  </ol>
 
-<!-- Page Content -->
-<div class="container">
-
-    <!-- Jumbotron Header -->
-    <header class="jumbotron hero-spacer">
-        <h1>Bienvenido a Plano a la Mano!</h1>
-        <p>Busca un producto que cumpla con sus necesidades, o pídalo hecho a la medida.</p>
-    </header>
-
-    <hr>
-
-    <!-- Title -->
-    <div class="row">
-        <div class="col-lg-12">
-            <h3>Catalogo</h3>
-        </div>
+  <!-- Wrapper for slides -->
+  <div class="carousel-inner">
+    <div class="item active">
+      <img src="/img/portfolio/valveBox/valve.png" class="img-responsive" alt="Medidores">
     </div>
-    <!-- /.row -->
 
-    <!-- Page Features -->
-    <div class="row text-center">
-
-        <div class="col-md-4 col-sm-6 hero-feature">
-            <div class="thumbnail">
-                <img src="/img/portfolio/stairs/l-stair.jpg" alt="">
-                <div class="caption">
-                    <h3>Escaleras</h3>
-                    <p>Escaleras interiores y exteriores a pedido.</p>
-                    <p>
-                        <a href="/stairs/form" class="btn btn-primary">Cotizar ahora!</a> <a href="/stairs/" class="btn btn-default">Más información</a>
-                    </p>
-                </div>
-            </div>
-        </div>
-
-        <div class="col-md-4 col-sm-6 hero-feature">
-            <div class="thumbnail">
-                <img src="/img/portfolio/machinery/aplanadora.jpg" alt="">
-                <div class="caption">
-                    <h3>Maquinaria</h3>
-                    <p>Todas sus necesidades de maquinaria pesada !</p>
-                    <p>
-                        <a href="/machinery/" class="btn btn-primary">Cotizar ahora!</a> <a href="#" class="btn btn-default">Más información</a>
-                    </p>
-                </div>
-            </div>
-        </div>
-
-        <div class="col-md-4 col-sm-6 hero-feature">
-            <div class="thumbnail">
-                <img src="/img/portfolio/valveBox/valve.jpg" alt="">
-                <div class="caption">
-                    <h3>Medidores de agua</h3>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
-                    <p>
-                        <a href="#" class="btn btn-primary">Cotizar ahora!</a> <a href="/measurers/" class="btn btn-default">Más información</a>
-                    </p>
-                </div>
-            </div>
-        </div>
-
+    <div class="item">
+      <img src="/img/portfolio/stairs/l-stair.jpg" class="img-responsive" alt="Escaleras">
     </div>
-    <!-- /.row -->
 
-    <hr>
+    <div class="item">
+      <img src="/img/portfolio/machinery/aplanadora.jpg" class="img-responsive" alt="Maquinaria">
+    </div>
+  </div>
 
-    <!-- Footer -->
-    <footer>
+  <!-- Left and right controls -->
+  <a class="left carousel-control" href="#myCarousel" data-slide="prev">
+    <span class="glyphicon glyphicon-chevron-left"></span>
+    <span class="sr-only">Previous</span>
+  </a>
+  <a class="right carousel-control" href="#myCarousel" data-slide="next">
+    <span class="glyphicon glyphicon-chevron-right"></span>
+    <span class="sr-only">Next</span>
+  </a>
+</div>
+
+    <!-- Page Content -->
+    <div class="container">
+
+        <!-- Marketing Icons Section -->
         <div class="row">
             <div class="col-lg-12">
-                <p>Copyright &copy; Your Website 2014</p>
+                <h1 class="page-header">
+                    Welcome to Modern Business
+                </h1>
+            </div>
+            <div class="col-md-4">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h4><i class="fa fa-fw fa-check"></i> Escaleras</h4>
+                    </div>
+                    <div class="panel-body">
+                        <p>Escaleras interiores y exteriores a pedido.</p>
+                        <a href="/stairs/" class="btn btn-primary">Más información</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h4><i class="fa fa-fw fa-gift"></i> Maquinaria</h4>
+                    </div>
+                    <div class="panel-body">
+                        <p>Todas sus necesidades de maquinaria pesada !</p>
+                        <a href="/machinery/" class="btn btn-primary">Más información</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h4><i class="fa fa-fw fa-compass"></i> Medidores de agua</h4>
+                    </div>
+                    <div class="panel-body">
+                        <p>Cuadre sus medidores de manera facil y rapida.</p>
+                        <a href="/measurers/" class="btn btn-primary">Más información</a>
+                    </div>
+                </div>
             </div>
         </div>
-    </footer>
+        <!-- /.row -->
 
+        
+
+    </div>
+
+
+<% include ./partials/footer %>
+    <!-- Script to Activate the Carousel -->
+    <script>
+    $('.carousel').carousel({
+        interval: 5000 //changes the speed
+    })
+    </script>
 </div>
 
 </body>
