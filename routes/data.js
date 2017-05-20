@@ -28,7 +28,7 @@ var getMaterial = function (req,res) {
 };
 
 var getProvider = function (req,res) {
-    Provider.Id(req.params.provId, function (err, pro) {
+    Provider.findById(req.params.provId, function (err, pro) {
         if(err){
             res.send({"error":"IdIncorrecto"})
         }
