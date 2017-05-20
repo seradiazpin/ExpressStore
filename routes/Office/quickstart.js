@@ -8,7 +8,7 @@ var readline = require('readline');
 var google = require('googleapis');
 var googleAuth = require('google-auth-library');
 var path = require('path');
-
+var debug = require('debug')('todo:server');
 var filePath = path.join(__dirname, 'client_secret.json');
 
 // If modifying these scopes, delete your previously saved credentials
@@ -34,12 +34,12 @@ var TOKEN_PATH = path.join(__dirname, '.credentials/script-nodejs-quickstart.jso
 var sendResponce = module.exports.sendResponce = function(){
     fs.readFile(filePath, function processClientSecrets(err, content) {
         if (err) {
-            console.log('Error loading client secret file: ' + err);
+            debug('Error loading client secret file: ' + err);
             return;
         }
         // Authorize a client with the loaded credentials, then call the
         // Google Apps Script Execution API.
-        console.log(JSON.parse(content));
+        debug(JSON.parse(content));
         authorize(JSON.parse(content), callAppsScript);
     });
 };
@@ -48,12 +48,12 @@ var sendResponce = module.exports.sendResponce = function(){
 var continueQuotation = module.exports.continueQuotation = function(){
     fs.readFile(filePath, function processClientSecrets(err, content) {
         if (err) {
-            console.log('Error loading client secret file: ' + err);
+            debug('Error loading client secret file: ' + err);
             return;
         }
         // Authorize a client with the loaded credentials, then call the
         // Google Apps Script Execution API.
-        console.log(JSON.parse(content));
+        debug(JSON.parse(content));
         authorize(JSON.parse(content), callAppsScript2);
     });
 };
@@ -65,7 +65,6 @@ var continueQuotation = module.exports.continueQuotation = function(){
  * @param {function} callback The callback to call with the authorized client.
  */
 function authorize(credentials, callback) {
-    console.log(credentials);
     var clientSecret = credentials.installed.client_secret;
     var clientId = credentials.installed.client_id;
     var redirectUrl = credentials.installed.redirect_uris[0];
@@ -146,7 +145,7 @@ function callAppsScript(auth) {
     script.scripts.run({
         auth: auth,
         resource: {
-            function: 'test'
+            function: 'main'
         },
         scriptId: scriptId
     }, function(err, resp) {
@@ -225,7 +224,7 @@ function callAppsScript2(auth) {
             // with String keys and values, and so the result is treated as a
             // Node.js object (folderSet).
             var folderSet = resp.response.result;
-            console.log(resp.response);
+            debug(resp.response);
         }
 
     });
