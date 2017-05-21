@@ -7,12 +7,30 @@ var bufferComp="";
             $('#modName').text(maquina.name);
             $('#modBrand').text(maquina.price);
             $('#modType').text(maquina.type);
-            $('#modWeight').text(maquina.weight);
-            $('#modCapacity').text(maquina.capacity);
+            if(maquina.weight !== -1){
+              $('#modWeight').text(maquina.weight);
+            }else{
+              $('#modWeight').text("No aplica");
+            }
+            
+            if(maquina.capacity != -1){
+              $('#modCapacity').text(maquina.capacity);
+             }else{
+              $('#modCapacity').text("No aplica");
+            }
             $('#modEngine').text(maquina.engineModel);
             $('#modWater').text(maquina.waterCooling);
-            $('#modRouteSpeed').text(maquina.routeSpeed);
-            $('#modTurningSpeed').text(maquina.turningSpeed);
+
+            if(maquina.routeSpeed !== -1){
+              $('#modRouteSpeed').text(maquina.routeSpeed);
+            }else{
+              $('#modRouteSpeed').text("No aplica");
+            }
+            if(maquina.turningSpee != -1){
+              $('#modTurningSpeed').text(maquina.turningSpeed);
+            }else{
+              $('#modTurningSpeed').text("No aplica");
+            }
             $('#modFuel').text(maquina.fuelCapacity);
             $('#modLength').text(maquina.length);
             $('#modWidth').text(maquina.width);

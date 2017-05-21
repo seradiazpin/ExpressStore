@@ -13,7 +13,7 @@ var machinerySchema = new Schema({
     brand:{type: String,required:true,default:"*NOT FOUND*"},
     type:{ type: String, required: true,default:"*NOT FOUND*"},
     weight: { type: Number, required: true},
-    capacity: { type: Number, required: true},
+    capacity: { type: String, required: true},
     engineModel: { type: String, required: true,default:"*NOT FOUND*"},
     waterCooling:{ type: String, required: true,default:"*NOT FOUND*"},
     routeSpeed: { type: Number, required: true},
@@ -30,7 +30,7 @@ var machinerySchema = new Schema({
     catalogue:{type:String,default:'#'},
     video:{type:String,default:"#"},
     price:{type:Number,default:0},
-    components:[]
+    components:[String]
 });
 
 var machinery = mongoose.model('machinery', machinerySchema);

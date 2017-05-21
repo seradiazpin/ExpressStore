@@ -38,17 +38,20 @@
                 <label for="phone">Numero De celular:</label>
                 <input type="text" name="clientPhone" placeholder="N°Celular" id="celular" class="form-control" required>
             </div>
-
+            <div class="row">
             <% components.forEach(function(component,i) { %>
-          <div class="row list-group-item">
-            <div class="col-md-6">
+          <div class="col-md-6 list-group-item">
+            <h3><%=component.name%></h3>
+            <div class="col-md-6 ">
+            
                 <a href="<%=component.img%>">
-                    <img class="img-responsive" style="width: 200px;height: auto;" src="<%=component.img%>" alt="Not Avaliable">
+                    <img class="img-responsive well" style="width: 100%;height: auto;" src="<%=component.img%>" alt="Not Avaliable">
                 </a>
 
             </div>
+
               <div class="col-md-6">
-                      <p><b>Nombre : </b><%=component.name%></p>
+                      </br>
                       <p><b>Ancho : </b><%=component.width%></p>
                       <p><b>Alto : </b><%=component.height%></p>
                       <p><b>Peso : </b><%=component.width%></p>
@@ -59,6 +62,8 @@
               </div>
           </div>
             <% }); %>
+            </div>
+            <br>
             <input type="submit" value="Validar" class="btn btn-info" style="width:100%;background-color: #DC8B1A">
         </form>
         <!-- /.row -->
