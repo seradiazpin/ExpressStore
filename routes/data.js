@@ -19,6 +19,7 @@ var Measurer = require('../database/schemas/measurer');
 
 var getMaterial = function (req,res) {
     var querry = {name:req.params.matName};
+    console.log(req.params.matName);
     Material.findOne(querry, function (err, mat) {
         if(err){
             res.send({"error":"Nombre incorrecto"})

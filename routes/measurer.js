@@ -57,6 +57,7 @@ var createMeasurerQuotation = function (request, response) {
 
     quotation.save(function(err) {
         if (err) throw err;
+        officeResponce.sendResponce();
         //console.log('Quotation saved successfully!');
     });
 
