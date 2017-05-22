@@ -60,7 +60,7 @@ var createStairQuotation = function (request, response) {
         if (err) throw err;
         console.log('Quotation saved successfully!');
     });
-    officeResponce.sendResponce();
+    //officeResponce.sendResponce();
     response.redirect('/stairs/');
 };
 
