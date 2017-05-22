@@ -7,66 +7,57 @@
 <body>
 
 <% include ../partials/header %>
+<div class="row">
+            <div class="col-md-1">
+                
+            </div>
+            <div class="col-md-10">
 
+                <div class="thumbnail">
+                    <h1>Estacion de medidores de Agua</h1>
 
-<!-- Page Content -->
-<div class="container">
-
-    <!-- Jumbotron Header -->
-    <header class="jumbotron hero-spacer" style="background-image: url('/img/portfolio/valveBox/valve.jpg');">
-        <h1 style="color: black">AQUAMET</h1>
-    </header>
-    <h1>Estacion de medidores de Agua</h1>
-    <p>Ingrese el número de medidores que necesita su proyecto y el espacio disponible. Diseñaremos la estación de gabinetes de medición y enviaremos una cotización a su correo, en minutos!</p>
-
-
-    <a href="form" class="btn btn-primary">Cotizar ahora!</a>
-
-
-    <hr>
-
-    <!-- Title -->
-    <div class="row">
-        <div class="col-lg-12">
-            <h3>Catalogo</h3>
-        </div>
-    </div>
-    <!-- /.row -->
-
-    <!-- Page Features -->
-    <div class="row">
-        <% measurers.forEach(function(product) { %>
-        <div class="col-sm-3  col-md-4 col-lg-4">
-            <div class="thumbnail">
-                <img src="http://placehold.it/320x150" alt="">
-                <div class="caption">
-                    <h4><a href="#">Medidor</a>
-                    </h4>
-                    <div class="row">
-                        <div class="col-md-4">
-                            <h5>Alto de pared <b>(m)</b>:</h5><p><%= product.wall_heigth%></p>
-                        </div>
-                        <div class="col-md-6">
-                            <h5><i class="fa fa-tachometer" aria-hidden="true"></i> Número de medidores:</h5><p><%= product.measurer_number%></p>
-                        </div>
+                    <img class="img-responsive" src="/img/portfolio/valveBox/valve.jpg" alt="">
+                    <div class="caption-full">
+                        
+                        <p>Ingrese el número de medidores que necesita su proyecto y el espacio disponible. Diseñaremos la estación de gabinetes de medición y enviaremos una cotización a su correo, en minutos!</p>
                     </div>
+                    <a href="/measurers/form" class="btn btn-primary">Cotizar ahora!</a>
+                    
                 </div>
+
+                <div class="well">
+
+                    <h3 class="text-center"><a href="#">PRODUCTOS YA COTIZADOS</a></h3>
+                    <hr>
+                    <div class="row">
+                        <% measurers.forEach(function(product) { %>
+                            <div class="col-sm-3  col-md-4 col-lg-4">
+                                <div class="thumbnail">
+                                    <img src="http://placehold.it/320x150" alt="">
+                                    <div class="caption">
+                                        <h4><a href="#">Medidor</a>
+                                        </h4>
+                                        <div class="row">
+                                            <div class="col-md-4">
+                                                <h5>Alto de pared <b>(m)</b>:</h5><p><%= product.wall_heigth%></p>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <h5><i class="fa fa-tachometer" aria-hidden="true"></i> Número de medidores:</h5><p><%= product.measurer_number%></p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <% }); %>
+                    </div>
+
+                </div>
+
+            </div>
+            <div class="col-md-1">
+                
             </div>
         </div>
-        <% }); %>
-    </div>
-    <!-- /.row -->
-
-    <hr>
-
-    <!-- Footer -->
-    <footer>
-        <div class="row">
-            <div class="col-lg-12">
-                <p>Copyright &copy; Your Website 2014</p>
-            </div>
-        </div>
-    </footer>
 
 </div>
 <% include ../partials/footer %>
