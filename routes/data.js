@@ -23,8 +23,9 @@ var getMaterial = function (req,res) {
     Material.findOne(querry, function (err, mat) {
         if(err){
             res.send({"error":"Nombre incorrecto"})
-        }
+        }else{
         res.send(mat);
+        }
     });
 };
 
@@ -32,15 +33,17 @@ var getProvider = function (req,res) {
     Provider.findById(req.params.provId, function (err, pro) {
         if(err){
             res.send({"error":"IdIncorrecto"})
-        }
+        }else{
         res.send(pro);
+        }
     });
 };
 
+
 var completeQuotation = function (req,res) {
     Quotation.findByIdAndUpdate(req.params.quotId, { $set: {complete:true}}, { new: true }, function (err, quot) {
-        if (err) throw err
-        res.send(quot)
+        if (err) {res.send({"error":"IdIncorrecto"})}
+        else{res.send(quot)}
     });
 };
 
@@ -50,31 +53,31 @@ router.get('/', function(req, res, next) {
 });
 
 router.get('/materials', function(req, res, next) {
-    Material.find({}, function(err, users) {
-        if (err) throw err;
-        res.send(users);
+    Material.find({}, function(err, mat) {
+        if (err){res.send({"error":"Error en base de datos"})}
+        else{res.send(mat)};
     });
 });
 
 router.get('/providers', function(req, res, next) {
-    Provider.find({}, function(err, users) {
-        if (err) throw err;
-        res.send(users);
+    Provider.find({}, function(err, mat) {
+        if (err){res.send({"error":"Error en base de datos"})}
+        else{res.send(mat)};
     });
 });
 
 router.get('/quotations', function(req, res, next) {
     var querry = {complete:false};
     Quotation.find(querry, function (err, mat) {
-        if (err) throw err;
-        res.send(mat);
+        if (err){res.send({"error":"Error en base de datos"})}
+        else{res.send(mat)};
     });
 });
 
 router.get('/machines', function(req, res, next) {
     Machine.find({}, function (err, mat) {
-        if (err) throw err;
-        res.send(mat);
+        if (err){res.send({"error":"Error en base de datos"})}
+        else{res.send(mat)};
     });
 });
 
@@ -95,7 +98,7 @@ var getStair = function (req,res) {
 var getMachine = function (req,res) {
     Machine.findById(req.params.machineId, function (err, mat) {
         if(err){
-            res.send({"error":"Nombre incorrecto"})
+            res.send({"error":"Nombre incorrecto, el ID: "+req.params.machineId+"no es valido" })
         }
         res.send(mat);
     });
